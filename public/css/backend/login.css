@@ -1,0 +1,10 @@
+.FormLogin {
+    margin: 250px auto;
+    width: 25%;
+    padding: 20px;
+    background:#d9f1ff;
+    border-radius: 10px;
+}
+.err {
+    color: red;
+}

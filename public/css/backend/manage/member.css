@@ -1,0 +1,19 @@
+.wrap {
+    margin-top: 20px;
+}
+#content_member {
+    padding-top: 20px;
+}
+
+#datepicker {
+    z-index: 99;
+    background: white;
+}
+
+.divShow {
+    margin-top: 20px;
+}
+
+#update {
+    margin-bottom: 20px !important;
+}

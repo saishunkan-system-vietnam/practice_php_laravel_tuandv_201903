@@ -1,0 +1,66 @@
+#dashboard{
+
+}
+#dashboard .menu {
+    background:#484b4c;
+    color: white;
+    padding: 0;
+}
+#dashboard .menu h3 {
+    border-bottom: 1px white solid;
+    margin: 0px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+#dashboard .menu ul{
+    padding: 0;
+}
+#dashboard .menu ul li {
+    list-style: none;
+    padding: 5px 0px 5px 20px;
+    transition: transform 2s;
+    -webkit-transition: transform 2s;
+}
+#dashboard .menu ul li:hover {
+    background:#d1bb8d;
+    cursor: pointer;
+
+}
+#dashboard .menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+.sidebar-header {
+    margin-top: 20px;
+}
+.sidebar-header img{
+    border-radius: 50%;
+}
+.breadcome-list {
+    margin-top: 20px;
+}
+.mgTop {
+    margin-top: 50px;
+}
+.nalika-profile {
+    padding: 0 !important;
+}
+.comment-scrollbar {
+    margin-top: 35px;
+}
+.footer-copyright-area {
+    position: fixed;
+    width: 100%;
+    margin-bottom: 0px;
+    height: 100px;
+}
+form .form-control {
+    background: #b3d4fc !important;
+}
+.form-group input {
+    border: 1px solid #1B2A47 !important;
+}
+.breadcome-list h2{
+    color: #1B2A47 !important;
+}
