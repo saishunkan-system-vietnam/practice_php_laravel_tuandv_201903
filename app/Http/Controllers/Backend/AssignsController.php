@@ -111,7 +111,7 @@ class AssignsController extends AppController
      */
     public function update(Request $request, $assign_id, $member_id)
     {
-        
+
         $user = '';
         if ($request->session()->has('username')) {
             $user = Session::get('username');
