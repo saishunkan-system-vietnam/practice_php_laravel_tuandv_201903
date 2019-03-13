@@ -9,10 +9,11 @@
 @stop
 @section('directional')
     <h2>Quản lý đề thi</h2>
+    <h5>Thiết lập đề thi cho ứng viên</h5>
     {!! Form::open(['method' => 'POST', 'route' => ['assign_action.store'], 'style'=>'width:1000px']) !!}
     <div class="form-group">
         <label>Mã ứng viên: <b class="member">{{ $model_member['member_id'] }}</b></label><br/>
-        <label>Tên ứng viên: <b class="member">{{ $model_member['username'] }}</b></label>
+        <label>Tên ứng viên: <b class="member">{{ $username }}</b></label>
     </div>
 
     <div class="form-group">

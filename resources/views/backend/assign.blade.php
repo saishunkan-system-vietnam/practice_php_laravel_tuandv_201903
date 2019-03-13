@@ -39,9 +39,10 @@
                 {{--@include('backend.question.add')--}}
             </div>
             <div id="assign_show">
-                <div class="col-md-12 divAdd">
+               {{-- <div class="col-md-12 divAdd">
                     <a id="add_new" class="btn btn-primary" href="{{ asset("admin/answer/create") }}">Thêm mới</a>
-                </div>
+                </div>--}}
+                <h5>Hiển thị danh sách</h5>
                 <div class="col-md-12 divShow">
                     <table id="myTable" class="display" style="width:100%">
                         <thead>

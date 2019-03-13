@@ -117,28 +117,15 @@ class AssignsController extends AppController
             $user = Session::get('username');
         }
 
-        $combo_language = DB::table('language')
-            ->where('language.del_flag',0)
-            ->orderBy('language.language_id', 'desc')
-            ->get();
+        $info = Member::select("username")->where('member_id',$member_id)->first();
+        $combo_language= Language::where('language_parent','!=',0)->get();
 
-        $data = Question::leftJoin('language', function($join) {
-            $join->on('question.language_id', '=', 'language.language_id');
-        })
-            ->where('question.question_id',$id)
-            ->first([
-                'question.question_id',
-                'question.question_nm',
-                'question.question_code',
-                'question.language_id',
-                'language.language_nm',
-                'question.del_flag',
-                'language.del_flag',
-            ]);
-        return view("backend.question.update")->with([
+        return view("backend.assign.update")->with([
             'user'           => $user,
-            'combo_language' => $combo_language,
-            'data'           => $data
+            'model_language' => $combo_language,
+            'assign_id'      => $assign_id,
+            'member_id'      => $member_id,
+            'username'       => $info['username']
         ]);
 
     }
@@ -152,5 +139,9 @@ class AssignsController extends AppController
     public function destroy($id)
     {
         //
+    }
+
+    public function process_update(Request $request) {
+        $test =1;
     }
 }

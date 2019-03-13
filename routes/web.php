@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/assign', 'Backend\AssignsController@index');
     Route::get('/assign/create/{id}', 'Backend\AssignsController@create');
     Route::get('/assign/update/{assign_id}/{member_id}', 'Backend\AssignsController@update');
-
+    Route::get('/assign/process_update', 'Backend\AssignsController@process_update');
 });
 
 
