@@ -22,6 +22,24 @@
                 <label for="">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password">
             </div>
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    Thông tin đăng ký không đầy đủ, bạn cần chỉnh sửa như sau:
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (isset($message))
+                <div class="alert alert-success">
+                    {{ $message }}
+                </div>
+            @endif
+
             <p class="err">
                 {{ (isset($errors) && $errors == "fail")?'Username or Password incorrect':'' }}
             </p>

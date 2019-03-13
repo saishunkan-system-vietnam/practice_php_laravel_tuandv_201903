@@ -39,9 +39,16 @@
                 {{--@include('backend.question.add')--}}
             </div>
             <div id="question_show">
-
                 <div class="col-md-12 divAdd">
-                    <a id="add_new" class="btn btn-primary" href="{{ asset("admin/question/create") }}">Thêm mới</a>
+                    <a id="add_new" class="btn btn-primary col-md-1" href="{{ asset("admin/question/create") }}" style="">Thêm mới</a>
+                    <select class="form-control col-md-3" id="lang_id">
+                         @if(isset($data_language) && $data_language[0]->language_id !='')
+                            <option value="">Lựa chọn ngôn ngữ</option>
+                             @foreach($data_language as $rows)
+                                 <option value="{{ $rows->language_id }}" {{ (isset($lang_id_session) && $lang_id_session == $rows->language_id)?'selected':''  }}>{{ $rows->language_nm }}</option>
+                             @endforeach
+                         @endif
+                    </select>
                 </div>
                 <div class="col-md-12 divShow">
                     <table id="myTable" class="display" style="width:100%">
@@ -76,6 +83,7 @@
                         @endif
                         </tbody>
                     </table>
+
                 </div>
 
             </div>

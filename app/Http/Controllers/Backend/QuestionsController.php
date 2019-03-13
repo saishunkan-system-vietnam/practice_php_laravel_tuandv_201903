@@ -26,25 +26,26 @@ class QuestionsController extends AppController
         if ($request->session()->has('username')) {
             $user = Session::get('username');
         }
+
+        if ($request->session()->has('lang_session')){
+            $lang_id_session = Session::get('lang_session');
+        }else {
+            $lang_id_session = '';
+        }
+        $data_language = DB::table('language')
+            ->where('language.del_flag',0)
+            ->get();
+
         $data = DB::table('question')
             ->leftJoin('language', 'question.language_id', '=', 'language.language_id')
             ->where('question.del_flag',0)
             ->get();
 
-      /*  $data_answer = DB::table('answer')
-            ->select('answer.question_id')
-            ->where('answer.del_flag',0)
-            ->get();
-
-        $data2 = DB::table('question')
-            ->join('answer', 'question.question_id', '=', 'answer.question_id')
-            ->get();
-        var_dump($data2);
-        die();
-      */
         return view("backend.question")->with([
-            'user'        => $user,
-            'data'        => $data,
+            'user'            => $user,
+            'data_language'   => $data_language,
+            'data'            => $data,
+            'lang_id_session' => $lang_id_session
         ]);
     }
 
@@ -68,6 +69,27 @@ class QuestionsController extends AppController
         return view("backend.question.add")->with([
             'user' => $user,
             'data_language' => $data_language
+        ]);
+    }
+
+    /**
+     * refer language
+     *
+     * @author : tuantv - 2019/03/13 - create
+     * @author :
+     * @return : null
+     * @access : public
+     * @see :
+     */
+    public function refer_language(Request $request) {
+
+        Session::put('lang_session', $request->language_id);
+        $language_id = $request->session()->get('lang_session');
+        $data = Question::where('language_id', $language_id)->get();
+        $view = view('backend.question.refer_language')
+            ->with('data_language', $data)->render();
+        return response()->json([
+            'view_language' => $view
         ]);
     }
 
@@ -165,7 +187,6 @@ class QuestionsController extends AppController
                 'question.del_flag',
                 'language.del_flag',
             ]);
-
         return view("backend.question.update")->with([
             'user'           => $user,
             'combo_language' => $combo_language,

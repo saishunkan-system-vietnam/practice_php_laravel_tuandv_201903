@@ -13,37 +13,23 @@
 
     <div class="form-group">
         <label for="question_id">Question name:</label>
-        <select name="question_id" class="form-control" id="question_id">
-             @if(isset($cb_question) && $cb_question[0]->question_id !='')
-                 @foreach($cb_question as $rows)
-                     <option value="{{ $rows->question_id }}" {{ ($rows->question_id == $question_key)?'selected':'' }}>{{ $rows->question_nm }}</option>
-                 @endforeach
-             @endif
-        </select>
+        <input type="hidden" class="form-control" id="question_id" name="question_id" value="{{ $question_id }}">
+        <input type="text" class="form-control" id="question_nm" name="question_nm" value="{{ $question_nm }}" disabled>
     </div>
 
     @for($i=1;$i<=4;$i++)
         <div class="form-group">
             <label for="ans_{{ $i }}">Answer {{ $i }}:</label>
-            <input type="text" class="form-control" id="ans_{{ $i }}" name="ans_{{ $i }}">
+            <input type="text" class="form-control" id="ans_{{ $i }}" name="ans[{{ $i }}][answer_nm]" value="{{ isset($data[$i-1])?$data[$i-1]->answer_nm:'' }}">
             <div class="checkbox">
-                <label><input type="checkbox" value="" id="ans_correct{{ $i }}" name="ans_correct{{ $i }}" >Correct</label>
+                <label><input type="checkbox" value="0" id="ans_correct_{{ $i }}" name="ans[{{ $i }}][ans_correct]"
+                              {{ (isset($data[$i-1]) && $data[$i-1]->ans_correct == 1)?'checked':'' }}>Correct
+                </label>
             </div>
+            <input type="hidden" class="form-control" id="ans_key_{{ $i }}" name="ans[{{ $i }}][answer_id]" value="{{ isset($data[$i-1])?$data[$i-1]->answer_id:'' }}">
         </div>
-
-        <input type="hidden" class="form-control" id="answer_id{{ $i }}" name="answer_id{{ $i }}">
     @endfor
 
-   {{-- <div class="form-group">
-        <label for="ans_correct">Answer Correct:</label>
-        <select name="ans_correct" class="form-control required" id="ans_correct" >
-            <option value=""></option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-        </select>
-    </div>--}}
 
     <div class="form-group">
         <input type="submit" id="btn" class="btn btn-primary" value="Lưu"/>

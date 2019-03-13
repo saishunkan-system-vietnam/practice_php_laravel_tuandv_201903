@@ -28,13 +28,19 @@ class LanguagesController extends AppController
         if ($request->session()->has('username')) {
             $user = Session::get('username');
         }
+
+        $cb_language = $data = DB::table('Language')
+            ->where('Language.del_flag',0)
+            ->get();
+
         $data = DB::table('Language')
             ->where('Language.del_flag',0)
             ->orderBy('Language.language_id', 'desc')
             ->get();
         return view("backend.language")->with([
-            'user' => $user,
-            'data' => $data
+            'user'        => $user,
+            'cb_language' => $cb_language,
+            'data'        => $data
         ]);
     }
 
@@ -73,6 +79,7 @@ class LanguagesController extends AppController
         } else {
             $data = new Language();
             $data->language_nm      = $request->language_nm;
+            $data->language_parent      = $request->language_parent;
             $data->del_flag         = 0;
             $data->save();
 
@@ -113,8 +120,16 @@ class LanguagesController extends AppController
     {
         $language_id = $request->language_id;
         $data = Language::where('language_id', $language_id)->first();
+        $cb_language = DB::table('Language')
+            ->where('Language.language_id','!=',$language_id)
+            ->where('Language.del_flag',0)
+            ->get();
         $view = view('backend.language.update')
-            ->with('data', $data)->render();
+            ->with([
+                'cb_language' => $cb_language,
+                'data'        => $data
+            ])
+            ->render();
         return response()->json([
             'viewUpdate' => $view
         ]);

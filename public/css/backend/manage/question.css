@@ -1,3 +1,14 @@
 .divShow {
     margin-top: 20px;
 }
+.form-control {
+    background: #b3d4fc !important;
+}
+.form-group input {
+    border: 1px solid #1B2A47 !important;
+}
+#lang_id {
+    width: 300px;
+    margin-left: 20px;
+    height: 35px;
+}

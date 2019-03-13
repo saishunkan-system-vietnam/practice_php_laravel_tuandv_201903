@@ -9,6 +9,7 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     public function getLogin(Request $request) {
@@ -21,6 +22,21 @@ class LoginController extends Controller
 
     public function postLogin(Request $request){
         if ($request->isMethod('post')) {
+
+            $messages = [
+                'required' => 'Trường :attribute bắt buộc nhập.',
+            ];
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|max:60',
+                'password' => 'required|max:60',
+            ], $messages);
+
+            if ($validator->fails()) {
+                return redirect('admin/login')
+                    ->withErrors($validator)
+                    ->withInput();
+            } else {
+           /* }
             $formData = Input::only('username','password');
             $rules = [
                 'username' => 'required',
@@ -29,14 +45,14 @@ class LoginController extends Controller
             $validator = \Validator::make($formData, $rules);
             if ($validator->fails()) {
                 return Redirect::back()->withInput()->withErrors($validator->errors());
-            }else {
+            }else {*/
                 $arr=[
                     'username' => $request->username,
                     'password'=> $request->password
                 ];
                 Session::put('username', $request->username);
                 $count = DB::table('member')->where($arr)->count();
-                if($count == 1 ) {
+                if($count == 1) {
                     return redirect('admin/dashboard');
                 } else {
                     $errors = 'fail';
@@ -50,7 +66,6 @@ class LoginController extends Controller
 
     public function logout(Request $request){
         if ($request->session()->has('username')) {
-
             $request->session()->forget('username');
             return redirect('admin/login');
         }

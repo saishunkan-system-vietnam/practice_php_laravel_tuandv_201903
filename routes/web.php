@@ -43,15 +43,20 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/question/update/{id}', 'Backend\QuestionsController@update');
     Route::get('/question/del/{id}', 'Backend\QuestionsController@destroy');
     Route::get('/question/process_update', 'Backend\QuestionsController@process_update');
+    Route::get('/question/refer_language', 'Backend\QuestionsController@refer_language');
+
 
     Route::resource('answer_action', 'Backend\AnswersController');
     Route::get('/answer', 'Backend\AnswersController@index');
     Route::get('/answer/create/{id}', 'Backend\AnswersController@create');
-    Route::get('/answer/refer_question', 'Backend\AnswersController@refer_question');
-    //Route::get('/answer/update/{id}', 'Backend\AnswersController@update');
+    //Route::get('/answer/refer_question', 'Backend\AnswersController@refer_question');
     Route::get('/answer/del/{id}', 'Backend\AnswersController@destroy');
     Route::get('/answer/process_update', 'Backend\AnswersController@process_update');
 
+    Route::resource('assign_action', 'Backend\AssignsController');
+    Route::get('/assign', 'Backend\AssignsController@index');
+    Route::get('/assign/create/{id}', 'Backend\AssignsController@create');
+    Route::get('/assign/update/{assign_id}/{member_id}', 'Backend\AssignsController@update');
 
 });
 

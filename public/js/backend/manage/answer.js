@@ -17,6 +17,7 @@ var _obj = {
 $(document).ready(function() {
     try {
         initialize();
+        //$("#question_id_hidden").trigger("change");
 
         $(document).on('click','#show', function(e) {
             e.preventDefault();
@@ -24,10 +25,20 @@ $(document).ready(function() {
             $("#answer_show").fadeIn();
         });
 
-        $(document).on('change','#question_id', function(e) {
+        $("input[type=checkbox]").on("click", function(){
+            var check = $(this).prop("checked");
+            if(check) {
+                //alert("Checkbox is checked.");
+                $(this).val(1);
+            } else {
+                //alert("Checkbox is unchecked.");
+            }
+        });
+
+       /* $(document).on('change','#question_id', function(e) {
             var question_id = $(this).val();
             refer_question(question_id);
-        });
+        });*/
 
         $(document).on('click','#btnUpdate', function(e) {
             var data = getData(_obj);
@@ -97,7 +108,8 @@ function getData(obj) {
  * @access : public
  * @see :
  */
-function refer_question(question_id) {
+
+/*function refer_question(question_id) {
     $.ajax({
         url: '/admin/answer/refer_question',
         type: 'GET',
@@ -106,23 +118,25 @@ function refer_question(question_id) {
             question_key : question_id
         }
     }).done(function(res) {
-       /* console.log(res.refer_data);
-        debugger;*/
+       /!* console.log(res.refer_data);
+        debugger;*!/
         if(res.refer_data[0]) {
             for(var i=1;i<=4;i++) {
                 $("#ans_"+i).val(res.refer_data[i-1].answer_nm);
+                $("#ans_key_"+i).val(res.refer_data[i-1].answer_id);
+                $("#ans_correct_"+i).val(res.refer_data[i-1].ans_correct);
                 if(res.refer_data[i-1].ans_correct == 1) {
                     $("#ans_correct"+i).attr("checked",true);
                 }
             }
-           /* $("#answer_nm").val(res.refer_data.answer_nm);
-            $("#ans_correct").val(res.refer_data.ans_correct);*/
+           /!* $("#answer_nm").val(res.refer_data.answer_nm);
+            $("#ans_correct").val(res.refer_data.ans_correct);*!/
         }else {
-            /*$("#answer_nm").val("");
-            $("#ans_correct").val("");*/
+            /!*$("#answer_nm").val("");
+            $("#ans_correct").val("");*!/
             for(var i=1;i<=4;i++) {
                 $("#ans_"+i).val("");
             }
         }
     });
-}
+}*/

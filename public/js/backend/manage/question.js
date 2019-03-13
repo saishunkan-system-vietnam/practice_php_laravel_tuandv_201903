@@ -23,22 +23,12 @@ $(document).ready(function() {
             $("#question_show").fadeIn();
         });
 
-      /*  $(document).on('click','.member_id', function(e) {
-            e.preventDefault();
-            var id = $(this).attr("member_id");
-            $.ajax({
-                url: '/admin/member/update',
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    member_id: id
-                }
-            }).done(function(res) {
-                $("#wrap").empty();
-                $("#wrap").append(res.viewUpdate);
-                $(".datepicker").datepicker();
-            });
-        });*/
+        $(document).on('change','#lang_id', function() {
+            var language_id = $(this).val();
+            if(language_id !='') {
+                refer_language(language_id);
+            }
+        });
 
         /**
          * edit question by id
@@ -101,7 +91,6 @@ function initialize() {
         $("#question_add").hide();
         $(".datepicker").datepicker();
         $('#myTable').DataTable();
-
     } catch(e){
         alert('initialize: ' + e.message);
     }
@@ -126,4 +115,28 @@ function getData(obj) {
     } catch (e) {
         alert('getData: ' + e.message);
     }
+}
+
+/**
+ * refer when change language
+ *
+ * @author : tuantv - 2019/03/13 - create
+ * @author :
+ * @return : null
+ * @access : public
+ * @see :
+ */
+function refer_language(language_id) {
+    $.ajax({
+        url: '/admin/question/refer_language',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            language_id: language_id
+        }
+    }).done(function(res) {
+        $(".divShow").empty();
+        $(".divShow").append(res.view_language);
+        $('#myTable').DataTable();
+    });
 }

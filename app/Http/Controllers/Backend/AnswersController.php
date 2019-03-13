@@ -6,6 +6,7 @@ use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Mockery\CountValidator\Exception;
 use SebastianBergmann\CodeCoverage\Report\Html;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -27,13 +28,8 @@ class AnswersController extends AppController
         if ($request->session()->has('username')) {
             $user = Session::get('username');
         }
-        /*$data = DB::table('question')
-            ->leftJoin('language', 'question.language_id', '=', 'language.language_id')
-            ->where('question.del_flag',0)
-            ->get();*/
         return view("backend.answer")->with([
             'user' => $user,
-            /*'data' => $data*/
         ]);
     }
 
@@ -48,38 +44,36 @@ class AnswersController extends AppController
         if ($request->session()->has('username')) {
             $user = Session::get('username');
         }
-       /* $data_answer = DB::table('answer')
-            ->where('del_flag',0)
-            ->get();*/
-        $cb_question = DB::table('question')
-           // ->leftJoin('question', 'answer.question_id', '=', 'question.question_id')
+        $query = DB::table('question')
+            ->where('question.question_id', $id)
             ->where('question.del_flag',0)
             ->get();
+        $data = DB::table('answer')
+            ->where('answer.question_id', $id)
+            ->where('answer.del_flag',0)
+            ->get();
         return view("backend.answer.add")->with([
-            'user' => $user,
-            'cb_question' => $cb_question,
-            'question_key' => $id
+            'user'        => $user,
+            'question_id' => $id,
+            'question_nm' => $query[0]->question_nm,
+            'data'        => $data
         ]);
     }
 
-    public function refer_question(Request $request) {
+    /*public function refer_question(Request $request) {
         if($request->ajax()){
             $question_id = $request->question_key;
             $data = DB::table('answer')
                 ->where('answer.question_id', $question_id)
                 ->where('answer.del_flag',0)
                 ->get();
-            /*return response()->json([
-                'refer_data' => isset($data[0])?$data[0]:''
-            ]);*/
-
             return response()->json([
                 'refer_data' => isset($data)?$data:''
             ]);
 
         }
+    }*/
 
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -88,11 +82,11 @@ class AnswersController extends AppController
      */
     public function store(Request $request)
     {
-        $messages = [
+        /*$messages = [
             'required' => 'Trường :attribute bắt buộc nhập.',
         ];
         $validator = Validator::make($request->all(), [
-            'ans_correct' => 'required|max:255',
+            'question_id' => 'required|max:255',
         ], $messages);
 
         if ($validator->fails()) {
@@ -100,32 +94,40 @@ class AnswersController extends AppController
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $data = new Answer();
-            $question_id = $request->question_id;
-            for($i=1;$i<=4;$i++) {
-                $ans_1
-            }
-            $ans_1   = $request->ans_1;
-            $ans_correct1 = $request->ans_correct1;
-            $ans_2   = $request->ans_2;
-            $ans_correct2 = $request->ans_correct2;
-            ans_correct1
-            $ans_correct = $request->ans_correct;
-            /*$result = DB::table('answer')
-                ->where("question_id",$question_id)
-                ->update([
-                       "ans_a"       => $ans_a
-                    ,   "ans_b"       => $ans_b
-                    ,   "ans_c"       => $ans_c
-                    ,   "ans_d"       => $ans_d
-                    ,   "ans_correct" => $ans_correct
-                ]);*/
 
-            if($data->save()){
-                $request->session()->flash('alert-success', 'Thêm mới thành công!');
-                return redirect('admin/answer');
-            }
+        }*/
+
+        $args = $request->input('ans');
+        //dd($args);
+        $qID = $request->input('question_id');
+        try{
+            foreach($args as $row) {
+                $data = new Answer();
+                $ans_correct = isset($row['ans_correct']) ? $row['ans_correct'] : 0;
+                if (!empty($qID)) {
+                    if (!empty($row['answer_id'])) {
+                        DB::table('answer')
+                            ->where("answer_id", $row['answer_id'])
+                            ->where("question_id", $qID)
+                            ->update([
+                                'answer_nm' => $row['answer_nm'],
+                                'ans_correct' => $ans_correct
+                            ]);
+                    } else {
+                        $data->question_id = $qID;
+                        $data->answer_nm = $row['answer_nm'];
+                        $data->ans_correct = $ans_correct;
+                        $data->del_flag = 0;
+                        $data->save();
+                    }
+                }
+            }// end foreach
+            $request->session()->flash('alert-success', 'Cập nhật thành công!');
+            return redirect('admin/question');
+        }catch(Exception $e){
+            print_r($e);
         }
+
 
     }
 

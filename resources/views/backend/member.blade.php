@@ -65,6 +65,7 @@
                            <th>Experience_year</th>
                            <th>Role</th>
                            <th></th>
+                           <th></th>
                        </tr>
                        </thead>
                        <tbody>
@@ -86,6 +87,9 @@
                                        <td>{{$row->experience_year}}</td>
                                        <td>{{$row->role}}</td>
                                        <td><a class="member_id" member_id="{{$row->member_id}}" href="{{ 'member/edit/'.$row->member_id }}">Edit</a> | <a href="{{ 'member/del/'.$row->member_id }}">Del</a></td>
+                                       <td>
+                                           <a class="btn btn-success" href="{{ asset('admin/assign/create/'.$row->member_id) }}">Assign</a>
+                                       </td>
                                    </tr>
                                @endforeach
                            @else
