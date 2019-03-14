@@ -64,7 +64,7 @@
                                     <td>{{ $row->username }}</td>
                                     <td class="text-center">{{ $row->language_id }}</td>
                                     <td>{{ $row->language_nm }}</td>
-                                    <td><a class="assign_id" href="{{ 'assign/update/'.$row->assign_id.'/'.$row->member_id }}">Edit</a> | <a href="{{ 'assign/del/'.$row->assign_id }}">Del</a></td>
+                                    <td><a class="assign_id" href="{{ 'assign/update/'.$row->assign_id.'/'.$row->member_id.'/'.$row->language_id }}">Edit</a> | <a href="{{ 'assign/del/'.$row->assign_id }}">Del</a></td>
                                 </tr>
                             @endforeach
                         @else

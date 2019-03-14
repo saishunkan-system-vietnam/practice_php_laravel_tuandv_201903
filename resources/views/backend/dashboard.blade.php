@@ -62,6 +62,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.css">
     <!-- modernizr JS
 		============================================ -->
 
@@ -71,6 +72,7 @@
     <script type="text/javascript" src="{{ asset('js/backend/dashboard.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/backend/vendor/modernizr-2.8.3.min.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.js"></script>
 
     <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

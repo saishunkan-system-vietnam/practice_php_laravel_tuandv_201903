@@ -54,10 +54,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/answer/process_update', 'Backend\AnswersController@process_update');
 
     Route::resource('assign_action', 'Backend\AssignsController');
-    Route::get('/assign', 'Backend\AssignsController@index');
-    Route::get('/assign/create/{id}', 'Backend\AssignsController@create');
-    Route::get('/assign/update/{assign_id}/{member_id}', 'Backend\AssignsController@update');
-    Route::get('/assign/process_update', 'Backend\AssignsController@process_update');
+    Route::post('/assign/del_row', 'Backend\AssignsController@del_row');
+
+    //Route::get('/assign', 'Backend\AssignsController@index');
+    //Route::get('/assign/creates/{id}', 'Backend\AssignsController@create');
+    //Route::post('/assign/create', 'Backend\AssignsController@create');
+    //tv
+    /*Route::get('/assign/update/{assign_id}/{member_id}/{language_id}', 'Backend\AssignsController@update');
+    Route::post('/assign/process_update', 'Backend\AssignsController@process_update');*/
 });
 
 

@@ -8,7 +8,7 @@
 @stop
 @section('directional')
     <h2>Thay đổi mã đề</h2>
-<form action="{{ url('admin/assign/process_update') }}" method="GET" role="form" style="width: 1000px">
+<form action="{{ url('admin/assign/process_update') }}" method="POST" role="form" style="width: 1000px">
 <div class="form-group">
     <label>Mã ứng viên: <b class="member">{{ $assign_id }}</b></label><br/>
     <label>Tên ứng viên: <b class="member">{{ $username }}</b></label>
@@ -19,7 +19,7 @@
     <select name="language_id" class="form-control" id="language_id">
         @if(isset($model_language)  !='' )
             @foreach($model_language as $rows)
-                <option value="{{ $rows->language_id }}">{{ $rows->language_nm }}</option>
+                <option value="{{ $rows->language_id }}" {{ ($rows->language_id == $language_id)?'selected':'' }}>{{ $rows->language_nm }}</option>
             @endforeach
         @endif
     </select>

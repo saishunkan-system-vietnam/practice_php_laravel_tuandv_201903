@@ -1,6 +1,21 @@
 .divShow {
     margin-top: 20px;
 }
+
 .member {
     color: green;
 }
+
+.optionI {
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form-inline select:first-child {
+    width: 500px;
+}
+
+/*.none {
+    display: none !important;
+}*/
