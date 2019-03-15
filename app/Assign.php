@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Assign extends Model
 {
     protected $table        = 'assign';
-    protected $fillable     = ['assign_id','member_id','language_id','del_flag'];
+    protected $fillable     = ['assign_id','member_id','language_id','accept_email','status_exam','del_flag'];
     public    $timestamps   = false;
     protected $primaryKey   = 'assign_id';
 }

@@ -11,7 +11,7 @@ use Mockery\CountValidator\Exception;
 use SebastianBergmann\CodeCoverage\Report\Html;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Mail;
 class AssignsController extends AppController
 {
     /**
@@ -67,6 +67,23 @@ class AssignsController extends AppController
         ]);
     }
 
+    public function send_email(Request $request,$member_id,$language_id) {
+        $token = base64_encode($member_id.$language_id);
+        $url = 'http://quiz.dev/home/exercise/'.$token;
+        $name = 'tuan';
+        $email='vantuant2@gmail.com';
+        $country = 'Viet Nam';
+
+        $user = [
+                'name' =>$name
+            ,   'email'=>'vantuant2@gmail.com'
+            ,   'url'=>$url
+        ];
+        Mail::send('backend.assign.email', ['user' => $user], function ($m) use ($user) {
+            $m->from('vantuant2@gmail.com', 'Ung dung gui email');
+            $m->to('vantuant2@gmail.com','tuantv')->subject('gui email');
+        });
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -55,13 +55,20 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('assign_action', 'Backend\AssignsController');
     Route::post('/assign/del_row', 'Backend\AssignsController@del_row');
-
+    Route::get('/assign/send_email/{member_id}/{language_id}', 'Backend\AssignsController@send_email');
     //Route::get('/assign', 'Backend\AssignsController@index');
     //Route::get('/assign/creates/{id}', 'Backend\AssignsController@create');
     //Route::post('/assign/create', 'Backend\AssignsController@create');
     //tv
     /*Route::get('/assign/update/{assign_id}/{member_id}/{language_id}', 'Backend\AssignsController@update');
     Route::post('/assign/process_update', 'Backend\AssignsController@process_update');*/
+});
+
+Route::group(['prefix' => 'home'], function () {
+    Route::get('/','Frontend\HomesController@index');
+    Route::get('/exercise','Frontend\HomesController@exercise');
+    Route::resource('home_action', 'Frontend\HomesController');
+
 });
 
 

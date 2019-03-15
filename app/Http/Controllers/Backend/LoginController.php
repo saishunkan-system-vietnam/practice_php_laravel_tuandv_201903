@@ -46,17 +46,28 @@ class LoginController extends Controller
             if ($validator->fails()) {
                 return Redirect::back()->withInput()->withErrors($validator->errors());
             }else {*/
-                $arr=[
-                    'username' => $request->username,
-                    'password'=> $request->password
+                $arr_admin=[
+                    'username'  => $request->username,
+                    'password'  => $request->password,
+                    'role'      =>  1
+                ];
+                $arr_member=[
+                    'username'  => $request->username,
+                    'password'  => $request->password,
+                    'role'      =>  2
                 ];
                 Session::put('username', $request->username);
-                $count = DB::table('member')->where($arr)->count();
-                if($count == 1) {
-                    return redirect('admin/dashboard');
+                $count_admin = DB::table('member')->where($arr_admin)->count();
+                $count_member = DB::table('member')->where($arr_member)->count();
+                if($count_member > 0) {
+                    return redirect('home/exercise');
                 } else {
-                    $errors = 'fail';
-                    return view('backend.login')->with('errors',$errors);
+                    if($count_admin > 0) {
+                        return redirect('admin/dashboard');
+                    } else {
+                        $errors = 'fail';
+                        return view('backend.login')->with('errors',$errors);
+                    }
                 }
             }
         }

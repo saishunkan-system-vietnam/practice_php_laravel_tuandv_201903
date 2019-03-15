@@ -39,6 +39,7 @@ $(document).ready(function() {
         $(document).on('click','.delRow', function(e) {
             var assign_id = $(this).attr("assign_id");
             var count = $(".exam").length;
+            var pos = $(this);
             //only delete when exist 1 row .exam:enable and 1 row .exam:disable (use to clone)
             if(count > 2 ) {
                 $.MessageBox({
@@ -46,12 +47,13 @@ $(document).ready(function() {
                     buttonFail  : "No",
                     message     : "Do you want to delete?"
                 }).done(function(){
-                    //$.MessageBox("Me too!");
                     if(assign_id != "") {
-                        delRow(assign_id);
+                        delRow(assign_id,pos);
+                    }else {
+                        pos.parents(".exam").remove();
                     }
                 }).fail(function(){
-                    //$.MessageBox("Yeah, sure... you IE6 nostalgic!");
+                    //$.MessageBox("Error !");
                 });
 
             }
@@ -117,7 +119,7 @@ function getData(obj) {
  * @access : public
  * @see :
  */
-function delRow(id) {
+function delRow(id,pos) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('input[name="csrf-token"]').attr("content")
@@ -131,15 +133,12 @@ function delRow(id) {
             assign_id: id
         }
     }).done(function(res) {
+       // debugger;
         $.MessageBox({
-            input    : true,
+            //input    : true,
             message  : "Delete success"
-        }).done(function(data){
-            if ($.trim(data)) {
-                $(this).parents(".exam").remove();
-            } else {
-                $.MessageBox("Delete error");
-            }
+        }).done(function(){
+            pos.parents(".exam").remove();
         });
 
 

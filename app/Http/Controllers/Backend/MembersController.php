@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 class MembersController extends AppController
 {
+
     /**
      * show information
      *
@@ -19,6 +20,7 @@ class MembersController extends AppController
      * @access : public
      * @see :
      */
+
     public function index(Request $request)
     {
         $user = '';

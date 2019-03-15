@@ -38,6 +38,8 @@
                 <input type="hidden" name="arr[{{ $key }}][assign_id]"  value="{{ $row_assign->assign_id }}"/>
                 <input type="hidden" class="language_id" name="arr[{{ $key }}][language_id]" value="{{ $row_assign->language_id }}"/>
                 <i class="fas fa-minus-circle optionI delRow" assign_id = "{{ $row_assign->assign_id }}"></i>
+                <a href="{{ url('admin/assign/send_email/'.$row_assign->member_id.'/'.$row_assign->language_id) }}"
+                        class="btn {{ ($row_assign->accept_email == 0) ? 'btn-primary' : 'btn-default disabled' }}">Send email</a>
                 </div>
             </div>
         @endforeach
