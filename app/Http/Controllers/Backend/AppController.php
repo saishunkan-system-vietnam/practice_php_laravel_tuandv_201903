@@ -12,5 +12,12 @@ use Illuminate\Support\Facades\Session;
 
 class AppController extends Controller
 {
-
+    public function __construct()
+    {
+        $user = '';
+        if (Session::has('username')) {
+            $user = Session::get('username');
+        }
+        $this->username = $user;
+    }
 }

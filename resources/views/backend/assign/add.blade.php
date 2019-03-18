@@ -13,6 +13,15 @@
     <input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
     <h2>Quản lý đề thi</h2>
     {{--<h5>Thiết lập đề thi cho ứng viên</h5>--}}
+
+    <div class="flash-message">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+            @if(Session::has('alert-' . $msg))
+                <p class="alert alert-{{ $msg }}" style="color: green">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+            @endif
+        @endforeach
+    </div> <!-- end .flash-message -->
+
     {!! Form::open(['method' => 'POST', 'route' => ['assign_action.store']]) !!}
     <div class="form-group">
         <label>Mã ứng viên: <b class="member">{{ $model_member['member_id'] }}</b></label><br/>
@@ -38,7 +47,7 @@
                 <input type="hidden" name="arr[{{ $key }}][assign_id]"  value="{{ $row_assign->assign_id }}"/>
                 <input type="hidden" class="language_id" name="arr[{{ $key }}][language_id]" value="{{ $row_assign->language_id }}"/>
                 <i class="fas fa-minus-circle optionI delRow" assign_id = "{{ $row_assign->assign_id }}"></i>
-                <a href="{{ url('admin/assign/send_email/'.$row_assign->member_id.'/'.$row_assign->language_id) }}"
+                <a href="{{ url('admin/assign/send_email/'.$row_assign->assign_id.'/'.$row_assign->member_id.'/'.$row_assign->language_id) }}"
                         class="btn {{ ($row_assign->accept_email == 0) ? 'btn-primary' : 'btn-default disabled' }}">Send email</a>
                 </div>
             </div>

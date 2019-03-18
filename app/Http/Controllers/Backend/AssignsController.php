@@ -12,6 +12,7 @@ use SebastianBergmann\CodeCoverage\Report\Html;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Helpers;
 class AssignsController extends AppController
 {
     /**
@@ -67,22 +68,47 @@ class AssignsController extends AppController
         ]);
     }
 
-    public function send_email(Request $request,$member_id,$language_id) {
-        $token = base64_encode($member_id.$language_id);
+    public function send_email(Request $request,$assign_id,$member_id,$language_id) {
+        $strRandom1 = Helpers::generateRandomString(20);
+        $strRandom2 = Helpers::generateRandomString(10);
+        //$test = generateRandomString(10);
+        parent::__construct();
+        $token = base64_encode($strRandom1.':'.$language_id.'/'.$strRandom2);
         $url = 'http://quiz.dev/home/exercise/'.$token;
         $name = 'tuan';
-        $email='vantuant2@gmail.com';
+        $model = DB::table('member')->where('username',$this->username)->first();
+        $email = $model->email;
         $country = 'Viet Nam';
 
-        $user = [
-                'name' =>$name
-            ,   'email'=>'vantuant2@gmail.com'
-            ,   'url'=>$url
+        $info = [
+                'name'  => $name
+            ,   'email' => $email
+            ,   'url'   => $url
         ];
-        Mail::send('backend.assign.email', ['user' => $user], function ($m) use ($user) {
+        Mail::send('backend.assign.template_email', ['info' => $info], function ($m) use ($info) {
             $m->from('vantuant2@gmail.com', 'Ung dung gui email');
             $m->to('vantuant2@gmail.com','tuantv')->subject('gui email');
         });
+
+        if( count(Mail::failures()) > 0 ) {
+            $request->session()->flash('alert-danger', 'Gửi email thất bại!');
+            /*foreach(Mail::failures as $email_address) {
+                echo " - $email_address <br />";
+            }*/
+        } else {
+            $request->session()->flash('alert-success', 'Gửi email thành công!');
+            $DB = DB::table('assign')
+                ->where([
+                    'assign_id'     => $assign_id,
+                    'member_id'     => $member_id,
+                    'language_id'   => $language_id,
+                    'del_flag'      => 0
+                ])
+                ->update(
+                    ['accept_email'=>1]
+                );
+        }
+        return redirect('admin/assign_action/create?member_id='.$member_id);
     }
     /**
      * Store a newly created resource in storage.

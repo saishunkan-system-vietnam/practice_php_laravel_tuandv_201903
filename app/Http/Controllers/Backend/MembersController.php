@@ -23,10 +23,9 @@ class MembersController extends AppController
 
     public function index(Request $request)
     {
-        $user = '';
-        if ($request->session()->has('username')) {
-            $user = Session::get('username');
-        }
+        parent::__construct();
+        $user = $this->username;
+
         $data = DB::table('Member')
             ->where('Member.del_flag',0)
             ->orderBy('Member.member_id', 'desc')

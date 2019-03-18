@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 /*Route::get('/', function () {
     return view('welcome');
 });*/
@@ -45,30 +44,22 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/question/process_update', 'Backend\QuestionsController@process_update');
     Route::get('/question/refer_language', 'Backend\QuestionsController@refer_language');
 
-
     Route::resource('answer_action', 'Backend\AnswersController');
     Route::get('/answer', 'Backend\AnswersController@index');
     Route::get('/answer/create/{id}', 'Backend\AnswersController@create');
-    //Route::get('/answer/refer_question', 'Backend\AnswersController@refer_question');
     Route::get('/answer/del/{id}', 'Backend\AnswersController@destroy');
     Route::get('/answer/process_update', 'Backend\AnswersController@process_update');
 
     Route::resource('assign_action', 'Backend\AssignsController');
     Route::post('/assign/del_row', 'Backend\AssignsController@del_row');
-    Route::get('/assign/send_email/{member_id}/{language_id}', 'Backend\AssignsController@send_email');
-    //Route::get('/assign', 'Backend\AssignsController@index');
-    //Route::get('/assign/creates/{id}', 'Backend\AssignsController@create');
-    //Route::post('/assign/create', 'Backend\AssignsController@create');
-    //tv
-    /*Route::get('/assign/update/{assign_id}/{member_id}/{language_id}', 'Backend\AssignsController@update');
-    Route::post('/assign/process_update', 'Backend\AssignsController@process_update');*/
+    Route::get('/assign/send_email/{assign_id}/{member_id}/{language_id}', 'Backend\AssignsController@send_email');
 });
 
 Route::group(['prefix' => 'home'], function () {
     Route::get('/','Frontend\HomesController@index');
-    Route::get('/exercise','Frontend\HomesController@exercise');
     Route::resource('home_action', 'Frontend\HomesController');
-
+    Route::get('/exercise/{token}','Frontend\HomesController@exercise');
+    Route::post('/exercise/{token}','Frontend\HomesController@exercise');
 });
 
 

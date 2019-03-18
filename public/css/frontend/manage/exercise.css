@@ -1,0 +1,17 @@
+.radio:first-child {
+    margin-top: 0px !important;
+}
+
+.correct {
+    color: #0E993C;
+    width: 150px;
+}
+
+.correct {
+    color: #0E993C;
+    width: 150px;
+}
+.wrong {
+    color: #ff0419;
+    width: 150px;
+}
