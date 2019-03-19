@@ -73,7 +73,7 @@ class AssignsController extends AppController
         $strRandom2 = Helpers::generateRandomString(10);
         //$test = generateRandomString(10);
         parent::__construct();
-        $token = base64_encode($strRandom1.':'.$language_id.'/'.$strRandom2);
+        $token = base64_encode($strRandom1.':'.$assign_id.'/'.$strRandom2);
         $url = 'http://quiz.dev/home/exercise/'.$token;
         $name = 'tuan';
         $model = DB::table('member')->where('username',$this->username)->first();

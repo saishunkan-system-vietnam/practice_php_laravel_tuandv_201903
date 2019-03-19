@@ -1,11 +1,14 @@
 @extends('frontend.layout')
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/manage/exercise.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.css">
 @stop
 
 @section('javascript')
     <script type="text/javascript" src="{{ asset('js/frontend/manage/exercise.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.js"></script>
 @stop
 
 @section('account')
@@ -14,6 +17,7 @@
 
 @section('list_exam')
     <h3>Chuyên đề: {{ $language }}</h3>
+    <input type="hidden" id="language_key" value="{{ $language_key }}"/>
     @if(isset($titleExam[0]))
         @foreach($titleExam as $row)
             <a href="{{ URL::route('home_action.show', ['language_id' => $row->language_id]) }}" class="list-group-item list-group-item-action bg-light">{{ $row->language_nm }}</a>
@@ -30,6 +34,7 @@
                     <div class="panel-heading">@yield('title2')</div>
                     <div class="panel-body">
                         <div id="exam">
+
                             @if(isset($data_question[0]))
                                 @foreach($data_question as $question)
                                     <div class="form-group exam">
@@ -37,7 +42,7 @@
                                         <label class="question_nm">{{ $question['question_nm'] }}</label>
                                         @foreach($data_answer as $answer)
                                             @if($answer->question_id == $question['question_id'] )
-                                                <div class="radio rad" style="margin-top: 0px">
+                                                <div class="radio rad" style="margin-top: 0px" ans_id="{{ $answer->answer_id  }}">
                                                     <input type="hidden" class="answer_id" value="{{ $answer->answer_id }}" answer_member="0"/>
                                                     <input type="hidden" class="ans_correct" value="{{ $answer->ans_correct }}" />
                                                     <label><input type="radio" class="inputRad" name="{{ 'radio'.$question['question_id'] }}">{{ $answer->answer_nm }}</label>
@@ -49,14 +54,19 @@
                             @endif
                         </div>
                         <button class="btn btn-primary" id="btnSubmit"> Nộp bài </button>
+                        <button class="btn btn-primary"  id="ReturnEmail" style="display: none">Send email</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3" style="background: #d17768">
-
+        <div class="col-md-3" style="">
+            <div class="text-center">
+                <h2>Thời gian còn lại</h2>
+                <span id="time" style="font-size: 80px">05:00</span>
+            </div>
         </div>
     </div>
     <input type="hidden" id="token" value="{{ $token }}" />
+    <input type="hidden" id="assign_id" value="{{ $assign_id }}" />
 @stop

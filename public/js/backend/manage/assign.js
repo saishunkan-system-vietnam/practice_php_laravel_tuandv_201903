@@ -140,7 +140,5 @@ function delRow(id,pos) {
         }).done(function(){
             pos.parents(".exam").remove();
         });
-
-
     });
 }

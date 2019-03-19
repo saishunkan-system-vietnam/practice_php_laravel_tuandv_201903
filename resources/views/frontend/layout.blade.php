@@ -20,6 +20,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/frontend/template/layout.css') }}" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.css">
     @yield('style')
     @yield('javascript')
 </head>
@@ -73,6 +76,15 @@
         </nav>
 
         <div class="container-fluid">
+            {{-- check error--}}
+            <div class="flash-message">
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                        <p class="alert alert-{{ $msg }}" style="color: green">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                    @endif
+                @endforeach
+            </div>
+
             <h1 class="mt-4">@yield('title_exam')</h1>
             @yield('content')
        </div>

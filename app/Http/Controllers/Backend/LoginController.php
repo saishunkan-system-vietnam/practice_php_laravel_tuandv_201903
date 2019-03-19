@@ -60,7 +60,7 @@ class LoginController extends Controller
                 $count_admin = DB::table('member')->where($arr_admin)->count();
                 $count_member = DB::table('member')->where($arr_member)->count();
                 if($count_member > 0) {
-                    return redirect('home/exercise');
+                    return redirect('home');
                 } else {
                     if($count_admin > 0) {
                         return redirect('admin/dashboard');
