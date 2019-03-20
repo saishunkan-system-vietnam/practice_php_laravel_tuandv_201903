@@ -1,3 +1,4 @@
+
 <div id="content" style="color: white">
     <div class="frame" style="
          width: 440px;
@@ -12,7 +13,7 @@
             <h3>Quizzes - {{ $info['company_name'] }} </h3>
         </div>
         <div class="bg" style="
-            background:#dfe2e8;
+            background:url('https://i1199.photobucket.com/albums/aa463/vantuanvn/bg_tuan.png') center;
             min-height: 250px;
             margin: 0;
             float: left;
@@ -23,11 +24,11 @@
             margin-left: 20px;
         ">
                 <div>
-                    <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Xin chào: {{ $info['name'] }} - {{ $info['email'] }}</p>
-                    <span> Cảm ơn bạn đã tham gia ứng tuyển vào công ty<br/></span>
-                    <span>Dưới đây là link làm bài test của chúng tôi</span><br/>
-                    <span><a href="{{ $info['url'] }}"> {{ $info['url'] }}</a></span><br/>
-                    <span>Nếu bạn cần thêm thông tin gì có thể liên lạc với chúng tôi theo thông tin bên dưới: </span><br/>
+                    <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Kết quả làm bài test của ứng viên</p>
+                    <span style="color: blue; font-weight: bold; text-decoration: underline; text-shadow: white 0.1em 0.1em 0.2em; font-size: 18px">Link: <a href="{{ $info['url'] }}"> {{ $info['url'] }}</a></span><br/>
+                    <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Tên ứng viên: {{ $info['name'] }}</span><br/>
+                    <span style="color: blue; font-weight: bold; text-decoration: none; text-shadow: white 0.1em 0.1em 0.2em;">Email: {{ $info['email'] }}</span><br/>
+                    <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Chuyên đề: {{ $info['language_name'] }}</span><br/>
                     <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Điện thoại: {{ $info['tel'] }}</span><br/>
                     <span style="color: brown; font-weight: bold; text-decoration: none;text-shadow: white 0.1em 0.1em 0.2em">Email công ty: {{ $info['email'] }}</span><br/>
                     <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Địa chỉ: {{ $info['address'] }}</span><br/>

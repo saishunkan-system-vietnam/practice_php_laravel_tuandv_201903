@@ -22,27 +22,25 @@ class AssignsController extends AppController
      */
     public function index(Request $request)
     {
-//        $user = '';
-//        if ($request->session()->has('username')) {
-//            $user = Session::get('username');
-//        }
-//
-//        $data = DB::table('assign')
-//            ->select(
-//                'assign.assign_id'
-//            ,   'assign.member_id'
-//            ,   'member.username'
-//            ,   'assign.language_id'
-//            ,   'language.language_nm'
-//            )
-//            ->leftJoin('member', 'assign.member_id', '=', 'member.member_id')
-//            ->leftJoin('language', 'assign.language_id', '=', 'language.language_id')
-//            ->where('assign.del_flag',0)
-//            ->get();
-//        return view("backend.assign")->with([
-//            'user' => $user,
-//            'data' => $data
-//        ]);
+        parent::__construct();
+        $user = $this->username;
+
+        $data = DB::table('assign')
+            ->select(
+                'assign.assign_id'
+            ,   'assign.member_id'
+            ,   'member.username'
+            ,   'assign.language_id'
+            ,   'language.language_nm'
+            )
+            ->leftJoin('member', 'assign.member_id', '=', 'member.member_id')
+            ->leftJoin('language', 'assign.language_id', '=', 'language.language_id')
+            ->where('assign.del_flag',0)
+            ->get();
+        return view("backend.assign")->with([
+            'user' => $user,
+            'data' => $data
+        ]);
 
     }
 
@@ -75,19 +73,46 @@ class AssignsController extends AppController
         parent::__construct();
         $token = base64_encode($strRandom1.':'.$assign_id.'/'.$strRandom2);
         $url = 'http://quiz.dev/home/exercise/'.$token;
-        $name = 'tuan';
-        $model = DB::table('member')->where('username',$this->username)->first();
-        $email = $model->email;
-        $country = 'Viet Nam';
 
+        $Db_member = DB::table('member')
+            ->where([
+                'member_id' => $member_id,
+                'del_flag'  => 0
+            ])
+            ->first();
+
+        $Db_language = DB::table("language")
+            ->where([
+                'language_id' => $language_id,
+                'del_flag'    => 0
+            ])->first();
+        $email_member  = $Db_member->email;
+        $username      = $Db_member->username;
+        $language_name = $Db_language->language_nm;
+
+        $Db_company = DB::table("company")
+            ->where([
+                'del_flag'    => 0
+            ])
+            ->orderBy('id', 'DESC')
+            ->first();
         $info = [
-                'name'  => $name
-            ,   'email' => $email
-            ,   'url'   => $url
+                'name'           => $username
+            ,   'email'          => $email_member
+            ,   'language_name'  => $language_name
+            ,   'date_current'   => date("Y-m-d")
+            ,   'company_name'   => $Db_company->company_nm
+            ,   'address'        => $Db_company->address
+            ,   'email_company'  => $Db_company->email
+            ,   'tel'            => $Db_company->tel
+            ,   'logo'           => $Db_company->logo
+            ,   'website'        => $Db_company->website
+            ,   'url'            => $url
         ];
+
         Mail::send('backend.assign.template_email', ['info' => $info], function ($m) use ($info) {
-            $m->from('vantuant2@gmail.com', 'Ung dung gui email');
-            $m->to('vantuant2@gmail.com','tuantv')->subject('gui email');
+            $m->from($info['email_company'], $info['company_name']);
+            $m->to($info['email'],'send')->subject('Đề thi trắc nghiệm');
         });
 
         if( count(Mail::failures()) > 0 ) {
@@ -153,9 +178,54 @@ class AssignsController extends AppController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($member_id)
     {
-        //
+        parent::__construct();
+        $user = $this->username;
+        $db_assign = DB::table('assign')
+            ->select(
+                    'member.member_id'
+                ,   'member.username'
+                ,   'member.email'
+                ,   'assign.assign_id'
+                ,   'assign.member_id'
+                ,   'member.username'
+                ,   'assign.language_id'
+                ,   'language.language_nm'
+            )
+            ->leftJoin('member', 'assign.member_id', '=', 'member.member_id')
+            ->leftJoin('language', 'assign.language_id', '=', 'language.language_id')
+            ->where([
+                'assign.member_id' =>$member_id,
+                'assign.del_flag' => 0
+            ])
+            ->first();
+        $language_id = $db_assign->language_id;
+
+        //info member
+        $data = DB::table('answer')
+        ->leftJoin('question', 'answer.question_id', '=', 'question.question_id')
+        ->leftJoin('language', 'question.language_id', '=', 'language.language_id')
+        ->where([
+            'language.language_id' => $language_id,
+            'answer.del_flag'      => 0
+        ])
+        ->get();
+
+        $question = DB::table('question')
+            ->leftJoin('language', 'question.language_id', '=', 'language.language_id')
+            ->where([
+                'language.language_id' => $language_id,
+                'question.del_flag'    => 0
+            ])
+            ->get();
+
+        return view("backend.assign.show")->with([
+            'data'      => $data,
+            'user'      => $user,
+            'member'    => $db_assign,
+            'question'  => $question
+        ]);
     }
 
     /**

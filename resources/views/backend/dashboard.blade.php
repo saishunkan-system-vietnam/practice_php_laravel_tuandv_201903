@@ -115,7 +115,7 @@
                                 <li><a title="Quản lý câu hỏi" href="{{ asset('admin/question') }}"><span class="mini-sub-pro">Quản lý câu hỏi</span></a></li>
                                 {{--<li><a title="Quản lý câu trả lời" href="{{ asset('admin/answer') }}"> <span class="mini-sub-pro">Quản lý câu trả lời</span></a></li>--}}
                                 <li><a title="Quản lý ứng viên" href="{{ asset('admin/member') }}"><span class="mini-sub-pro">Quản lý ứng viên</span></a></li>
-                                <li><a title="Quản lý đề thi" href="{{ asset('admin/assign') }}"><span class="mini-sub-pro">Quản lý đề thi</span></a></li>
+                                <li><a title="Quản lý đề thi" href="{{ URL::route('assign_action.index')}}"><span class="mini-sub-pro">Quản lý đề thi</span></a></li>
                             </ul>
                         </li>
 

@@ -34,7 +34,7 @@ $(document).ready(function() {
             }, 1000);
         }
 
-        $(document).on('click','#ReturnEmail', function(e) {
+       /* $(document).on('click','#ReturnEmail', function(e) {
             var exam = $("#exam").clone();
             $a = 1;
             $.ajaxSetup({
@@ -53,7 +53,7 @@ $(document).ready(function() {
 
             });
 
-        });
+        });*/
 
         var fiveMinutes = 3600 * 1,
             display = document.querySelector('#time');

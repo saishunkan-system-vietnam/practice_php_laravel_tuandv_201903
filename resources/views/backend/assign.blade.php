@@ -35,13 +35,7 @@
         </div>
 
         <div id="wrap" class="wrap">
-            <div id="assign_add">
-                {{--@include('backend.question.add')--}}
-            </div>
             <div id="assign_show">
-               {{-- <div class="col-md-12 divAdd">
-                    <a id="add_new" class="btn btn-primary" href="{{ asset("admin/answer/create") }}">Thêm mới</a>
-                </div>--}}
                 <h5>Hiển thị danh sách</h5>
                 <div class="col-md-12 divShow">
                     <table id="myTable" class="display" style="width:100%">
@@ -64,7 +58,7 @@
                                     <td>{{ $row->username }}</td>
                                     <td class="text-center">{{ $row->language_id }}</td>
                                     <td>{{ $row->language_nm }}</td>
-                                    <td><a class="assign_id" href="{{ 'assign/update/'.$row->assign_id.'/'.$row->member_id.'/'.$row->language_id }}">Edit</a> | <a href="{{ 'assign/del/'.$row->assign_id }}">Del</a></td>
+                                    <td><a class="assign_id" href="{{ URL::route('assign_action.show',['member_id' => $row->member_id]) }}">View</a> | <a href="{{ 'assign/del/'.$row->assign_id }}">Del</a></td>
                                 </tr>
                             @endforeach
                         @else
