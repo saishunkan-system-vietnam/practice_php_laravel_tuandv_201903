@@ -36,7 +36,7 @@
         <div id="user" class="sidebar-heading">
             @yield('account')
         </div>
-        <div class="list-group list-group-flush">
+        <div class="sidebar">
             @yield('list_exam')
         </div>
     </div>
@@ -77,7 +77,7 @@
 
         <div class="container-fluid">
             {{-- check error--}}
-            <div class="flash-message">
+            <div class="flash-message" style="margin-top: 20px">
                 @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                     @if(Session::has('alert-' . $msg))
                         <p class="alert alert-{{ $msg }}" style="color: green">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>

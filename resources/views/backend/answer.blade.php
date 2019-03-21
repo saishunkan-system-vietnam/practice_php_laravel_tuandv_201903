@@ -35,9 +35,6 @@
         </div>
 
         <div id="wrap" class="wrap">
-            <div id="answer_add">
-                {{--@include('backend.question.add')--}}
-            </div>
             <div id="answer_show">
                 <div class="col-md-12 divAdd">
                     <a id="add_new" class="btn btn-primary" href="{{ asset("admin/answer/create") }}">Thêm mới</a>
@@ -46,40 +43,24 @@
                     <table id="myTable" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Answer name</th>
-                                <th>Question id</th>
-                                <th>Answer A</th>
-                                <th>Answer B</th>
-                                <th>Answer C</th>
-                                <th>Answer D</th>
-                                <th>Correct</th>
+                                <th>Mã câu trả lời</th>
+                                <th>Tên câu trả lời</th>
+                                <th>Câu hỏi</th>
+                                <th>Đáp án A</th>
+                                <th>Đáp án B</th>
+                                <th>Đáp án C</th>
+                                <th>Đáp án D</th>
+                                <th>Đáp án đúng</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                       {{-- @if(isset($data))
-                            @foreach($data as $row)
-                                <tr>
-                                    <td>{{ $row->question_id }}</td>
-                                    <td>{{ $row->question_nm }}</td>
-                                    <td>{{ $row->language_nm }}</td>
-                                    <td><a class="question_id" href="{{ asset('admin/question/update/'.$row->question_id)  }}" question_id="{{$row->question_id}}">Edit</a> | <a href="{{ 'question/del/'.$row->question_id }}">Del</a></td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="3">Không tồn tại bản ghi nào</td>
-                            </tr>
-                        @endif--}}
                         </tbody>
                     </table>
                 </div>
 
             </div>
-            {{--  <div id="member_add">
-                  @include('backend.member.add')
-              </div>--}}
+
         </div>
     </div>
 @stop

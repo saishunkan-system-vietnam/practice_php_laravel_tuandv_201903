@@ -1,3 +1,4 @@
-/**
- * Created by User on 3/5/2019.
- */
+/*
+$(document).ready(function() {
+    alert(1);
+});*/

@@ -73,10 +73,8 @@
     <script type="text/javascript" src="{{ asset('js/backend/vendor/modernizr-2.8.3.min.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.js"></script>
-
     <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
     @yield('javascript_dashboard')
 @stop
 
@@ -96,7 +94,7 @@
                 </div>
                 <div class="profile-social-dtl">
                     <ul class="dtl-social">
-                        <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                        <li><a href="https://www.facebook.com/saishunkansystem/"><i class="fab fa-facebook-f fa-lg"></i></a></li>
                         <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
 
                     </ul>
@@ -144,20 +142,20 @@
                             <div class="header-top-wraper">
                                 <div class="row">
                                     <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
-                                        <div class="menu-switcher-pro">
+                                       {{-- <div class="menu-switcher-pro">
                                             <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
                                                 <i class="icon nalika-menu-task"></i>
                                             </button>
-                                        </div>
+                                        </div>--}}
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n hd-search-rp">
-                                            <div class="breadcome-heading">
+                                           {{-- <div class="breadcome-heading">
                                                 <form role="search" class="">
                                                     <input type="text" placeholder="Search..." class="form-control">
                                                     <a href=""><i class="fas fa-search"></i></a>
                                                 </form>
-                                            </div>
+                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -846,7 +844,9 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="breadcomb-wp">
                                             <div class="breadcomb-ctn">
-                                                {{--<p>Welcome to Nalika <span class="bread-ntd">Admin Template</span></p>--}}
+                                                <div class="element one">
+                                                    <p>Hệ thống quản lý trắc nghiệm</p>
+                                                </div>
                                                 @yield('directional')
                                             </div>
                                         </div>

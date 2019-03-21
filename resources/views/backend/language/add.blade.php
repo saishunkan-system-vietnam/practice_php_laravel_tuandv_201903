@@ -1,12 +1,12 @@
 {{--<form class="wForm" action="{{ url("admin/member_action") }}" method="POST" role="form" style="width: 1000px">--}}
 {!! Form::open(['method' => 'POST', 'route' => ['language_action.store'], 'style'=>'width:1000px']) !!}
 <div class="form-group">
-    <label for="language_nm">Language name:</label>
+    <label for="language_nm">Tên ngôn ngữ:</label>
     <input type="text" class="form-control" id="language_nm" name="language_nm">
 </div>
 
 <div class="form-group">
-    <label for="language_parent">Language parent</label>
+    <label for="language_parent">Thuộc danh mục ngôn ngữ</label>
     <select name="language_parent" class="form-control" id="language_parent">
         <option value="0"></option>
         @foreach($cb_language as $rows)

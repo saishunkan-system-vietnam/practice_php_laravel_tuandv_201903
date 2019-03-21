@@ -118,6 +118,7 @@ class QuestionsController extends AppController
         } else {
             $data = new Question();
             $data->question_nm      = $request->question_nm;
+            $data->question_code    = $request->question_code;
             $data->language_id      = $request->language_id;
             $data->del_flag         = 0;
             $data->save();

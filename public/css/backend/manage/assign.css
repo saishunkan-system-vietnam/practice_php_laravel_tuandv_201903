@@ -22,6 +22,17 @@ b {
     color: green;
 }
 
-/*.none {
-    display: none !important;
-}*/
+.correct {
+    color: #0E993C;
+    width: 150px;
+}
+.wrong {
+    color: #ff0419;
+    width: 150px;
+}
+.dupplicate {
+    border: 1px red solid !important;
+}
+.flash-message {
+    margin-bottom: 15px !important;
+}

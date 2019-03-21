@@ -15,8 +15,39 @@ var _obj = {
     'language_id'     : {'type': 'text'},
 };
 
+function checkSubmit(){
+    $("#manage_exam select").removeClass("dupplicate");
+    var arr = [];
+    $("#manage_exam select").each(function(i){
+        var _this = $(this);
+        _this.attr("index",i);
+        var language_id = _this.val();
+        arr.push(language_id);
+        i++;
+    });
+    // find position duplicate in array
+    var count = arr.length;
+    for(var i = 0 ;i < count; i++) {
+        for(var j = i+1; j < count; j++) {
+            if(arr[i] == arr[j]) {
+                $("#manage_exam select[index="+i+"]").addClass("dupplicate");
+                $("#manage_exam select[index="+j+"]").addClass("dupplicate");
+                console.log("bienI = :"+ i + " ");
+                console.log("bienJ = :"+ j + " ");
+            }
+        }
+    }
+    var checkError = $("#manage_exam .dupplicate").length;
+    if(checkError == 0){
+        $('#btnSubmit').submit();
+    }
+};
+
+
+
 $(document).ready(function() {
     try {
+
         initialize();
         $(document).on('click','#show', function(e) {
             e.preventDefault();
@@ -81,9 +112,9 @@ $(document).ready(function() {
  */
 function initialize() {
     try{
+        $(".element").hide();
         $("#assign_add").hide();
         $('#myTable').DataTable();
-
     } catch(e){
         alert('initialize: ' + e.message);
     }

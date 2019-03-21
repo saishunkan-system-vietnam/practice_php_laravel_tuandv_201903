@@ -54,10 +54,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/assign/del_row', 'Backend\AssignsController@del_row');
     Route::get('/assign/send_email/{assign_id}/{member_id}/{language_id}', 'Backend\AssignsController@send_email');
 
-    Route::resource('result_action', 'Backend\ResultsController');
-
-
-
 });
 
 Route::group(['prefix' => 'home'], function () {

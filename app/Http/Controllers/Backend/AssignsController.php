@@ -143,33 +143,39 @@ class AssignsController extends AppController
      */
     public function store(Request $request)
     {
-        //dd($request->input);
+        $return = true;
         $valiable = $request->input();
         $member_id = $request->member_id;
-        foreach($valiable['arr'] as $row){
-            $data = new Assign();
-            $language_id = $row['language_id'];
-            if (isset($row['assign_id']) && !empty($row['language_id'])) {
-                $result = DB::table('assign')
-                    ->where([
-                        'assign.assign_id' => $row['assign_id'],
-                        'assign.member_id' => $member_id
-                    ])
-                    ->update([
-                        'assign.language_id' => $row['language_id']
-                    ]);
-            } else {
-                $data->member_id      = $member_id;
-                $data->language_id    = $row['language_id'];
-                $data->del_flag       = 0;
-                $result = $data->save();
+        try {
+            DB::beginTransaction();
+            foreach ($valiable['arr'] as $row) {
+                $data = new Assign();
+                $language_id = $row['language_id'];
+                if (isset($row['assign_id']) && !empty($row['language_id'])) {
+                    $result = DB::table('assign')
+                        ->where([
+                            'assign.assign_id' => $row['assign_id'],
+                            'assign.member_id' => $member_id
+                        ])
+                        ->update([
+                            'assign.language_id' => $row['language_id']
+                        ]);
+                } else {
+                    $data->member_id = $member_id;
+                    $data->language_id = $row['language_id'];
+                    $data->del_flag = 0;
+                    $result = $data->save();
+                }
             }
-       }
-
-       if($result){
-           $request->session()->flash('alert-success', 'Thực hiện thành công!');
-           return redirect('admin/member');
-       }
+            DB::commit();
+            if($return){
+                $request->session()->flash('alert-success', 'Thực hiện thành công!');
+                return redirect('admin/member');
+            }
+        }catch(Exception $e){
+            DB::rollBack();
+            print_r($e);
+        }
     }
 
     /**
@@ -182,49 +188,63 @@ class AssignsController extends AppController
     {
         parent::__construct();
         $user = $this->username;
-        $db_assign = DB::table('assign')
+        $data = DB::table('result')
             ->select(
                     'member.member_id'
                 ,   'member.username'
                 ,   'member.email'
-                ,   'assign.assign_id'
-                ,   'assign.member_id'
-                ,   'member.username'
-                ,   'assign.language_id'
+                ,   'language.language_id'
                 ,   'language.language_nm'
+                ,   'answer.answer_id'
+                ,   'answer.answer_nm'
+                ,   'question.question_id'
+                ,   'question.question_nm'
+                ,   'result.ans_correct'
+                ,   'result.answer_member'
             )
-            ->leftJoin('member', 'assign.member_id', '=', 'member.member_id')
-            ->leftJoin('language', 'assign.language_id', '=', 'language.language_id')
+            ->leftJoin('language', 'result.language_id', '=', 'language.language_id')
+            ->leftJoin('question', 'result.question_id', '=', 'question.question_id')
+            ->leftJoin('answer', 'result.answer_id', '=', 'answer.answer_id')
+            ->leftJoin('member', 'result.member_id', '=', 'member.member_id')
             ->where([
-                'assign.member_id' =>$member_id,
-                'assign.del_flag' => 0
-            ])
-            ->first();
-        $language_id = $db_assign->language_id;
-
-        //info member
-        $data = DB::table('answer')
-        ->leftJoin('question', 'answer.question_id', '=', 'question.question_id')
-        ->leftJoin('language', 'question.language_id', '=', 'language.language_id')
-        ->where([
-            'language.language_id' => $language_id,
-            'answer.del_flag'      => 0
-        ])
-        ->get();
-
-        $question = DB::table('question')
-            ->leftJoin('language', 'question.language_id', '=', 'language.language_id')
-            ->where([
-                'language.language_id' => $language_id,
-                'question.del_flag'    => 0
+                'result.member_id' => $member_id,
+                'result.del_flag'  => 0
             ])
             ->get();
+
+        $question = DB::table('result')
+            ->select(
+                    'member.member_id'
+                ,   'language.language_id'
+                ,   'question.question_id'
+                ,   'question.question_nm'
+            )
+            ->leftJoin('language', 'result.language_id', '=', 'language.language_id')
+            ->leftJoin('question', 'result.question_id', '=', 'question.question_id')
+            ->leftJoin('member', 'result.member_id', '=', 'member.member_id')
+            ->where([
+                'result.member_id' => $member_id,
+                'result.del_flag'  => 0
+            ])
+            ->distinct()
+            ->get();
+
+        $score = DB::table('result')
+            ->select(DB::raw('count(*) as total'))
+            ->where([
+                'result.member_id' => $member_id,
+                'result.ans_correct' => 1,
+                'result.answer_member' => 1,
+                'result.del_flag'  => 0
+            ])
+            ->groupBy('result.ans_correct','result.answer_member')
+            ->first();
 
         return view("backend.assign.show")->with([
             'data'      => $data,
             'user'      => $user,
-            'member'    => $db_assign,
-            'question'  => $question
+            'question'  => $question,
+            'score'     => $score
         ]);
     }
 

@@ -20,14 +20,19 @@
 
 {!! Form::open(['method' => 'POST', 'route' => ['question_action.store'], 'style'=>'width:1000px']) !!}
 <div class="form-group">
-    <label for="question_nm">Question name:</label>
+    <label for="question_nm">Câu hỏi dạng văn bản:</label>
     <input type="text" class="form-control" id="question_nm" name="question_nm">
+</div>
+
+<div class="form-group">
+    <label for="question_nm">Câu hỏi dạng code:</label>
+    <textarea type="text" class="form-control" id="question_code" name="question_code" rows="10" style="background: black !important;"> </textarea>
 </div>
 
 <div class="form-group">
     <label for="language_id">Language name:</label>
     <select name="language_id" class="form-control" id="language_id">
-        @if(isset($data_language) && $data_language[0]->language_id !='')
+        @if(isset($data_language[0]) && $data_language[0]->language_id !='')
             @foreach($data_language as $rows)
                 <option value="{{ $rows->language_id }}">{{ $rows->language_nm }}</option>
             @endforeach

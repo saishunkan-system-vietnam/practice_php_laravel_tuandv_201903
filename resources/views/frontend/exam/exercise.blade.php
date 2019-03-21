@@ -12,17 +12,22 @@
 @stop
 
 @section('account')
-    {{ "Ứng viên: ".$username }}
+    <div id="account">
+        <h4>Ứng viên: <b>{{ $username }}</b></h4>
+        <a class="" href="../../admin/logout"> Đăng xuất</a>
+    </div>
 @stop
 
 @section('list_exam')
-    <h3>Chuyên đề: {{ $language }}</h3>
-    <input type="hidden" id="language_key" value="{{ $language_key }}"/>
-    @if(isset($titleExam[0]))
-        @foreach($titleExam as $row)
-            <a href="{{ URL::route('home_action.show', ['language_id' => $row->language_id]) }}" class="list-group-item list-group-item-action bg-light">{{ $row->language_nm }}</a>
-        @endforeach
-    @endif
+    <div id="list_exam">
+        <h4>Chuyên đề: <b>{{ $language }}</b></h4>
+        <input type="hidden" id="language_key" value="{{ $language_key }}"/>
+       {{-- @if(isset($titleExam[0]))
+            @foreach($titleExam as $row)
+                <a href="{{ URL::route('home_action.show', ['language_id' => $row->language_id]) }}" class="list-group-item list-group-item-action bg-light">{{ $row->language_nm }}</a>
+            @endforeach
+        @endif--}}
+    </div>
 @stop
 
 @section('content')
@@ -31,10 +36,9 @@
         <div class="col-md-9">
             <div class="panel-group">
                 <div class="panel panel-default bg_panel">
-                    <div class="panel-heading">@yield('title2')</div>
+                    <div class="panel-heading"> <b>{{ $language_children }}</b></div>
                     <div class="panel-body">
                         <div id="exam">
-
                             @if(isset($data_question[0]))
                                 @foreach($data_question as $question)
                                     <div class="form-group exam">

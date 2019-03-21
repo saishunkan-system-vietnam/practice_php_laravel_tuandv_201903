@@ -64,3 +64,55 @@ form .form-control {
 .breadcome-list h2{
     color: #1B2A47 !important;
 }
+.element p{
+    font-size: 50px !important;
+    color: #1b2a47;
+    margin: 0px 20px 0px 20px !important;
+}
+@media (min-width: 1200px) {
+    .element {
+        width: 1605px;
+    }
+
+}
+.element {
+    display: inline-block;
+    background-color: #0074d9;
+    height: 100px;
+    line-height: 100px;
+    color: white;
+    text-align: center;
+    opacity: .7;
+    font-family: Verdana, sans-serif;
+    border: 3px solid rgba(0,0,0,.3);
+    /*margin-bottom: 30px;*/
+}
+
+.one {
+    transform: rotateX(40deg);
+    animation: one 2s infinite;
+    animation-direction: alternate;
+}
+
+.two {
+    transform: rotateY(40deg);
+    animation: two 2s infinite;
+    animation-direction: alternate;
+    background-color: #831a4a;
+}
+
+.three {
+    transform: rotateZ(100deg);
+    animation: three 2s infinite;
+    animation-direction: alternate;
+    background-color: #439772;
+}
+
+@keyframes one {
+    0% {
+        transform: rotateX(0);
+    }
+    100% {
+        transform: rotateX(50deg);
+    }
+}

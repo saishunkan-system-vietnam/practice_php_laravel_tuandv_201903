@@ -74,6 +74,7 @@ $(document).ready(function() {
  */
 function initialize() {
     try{
+        $(".element").hide();
         $("#language_add").hide();
         $('#myTable').DataTable();
 

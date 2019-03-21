@@ -42,7 +42,7 @@
                 <div class="col-md-12 divAdd">
                     <a id="add_new" class="btn btn-primary col-md-1" href="{{ asset("admin/question/create") }}" style="">Thêm mới</a>
                     <select class="form-control col-md-3" id="lang_id">
-                         @if(isset($data_language) && $data_language[0]->language_id !='')
+                         @if(isset($data_language[0]) && $data_language[0]->language_id !='')
                             <option value="">Lựa chọn ngôn ngữ</option>
                              @foreach($data_language as $rows)
                                  <option value="{{ $rows->language_id }}" {{ (isset($lang_id_session) && $lang_id_session == $rows->language_id)?'selected':''  }}>{{ $rows->language_nm }}</option>
@@ -54,12 +54,12 @@
                     <table id="myTable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Question name</th>
-                            <th>Question name</th>
-                            <th>Language code</th>
-                            <th>Process</th>
-                            <th>Answer</th>
+                            <th>Mã câu hỏi</th>
+                            <th>Câu dạng văn bản</th>
+                            <th>Câu hỏi dạng code</th>
+                            <th>Mã ngôn ngữ</th>
+                            <th></th>
+                            <th>Gán câu trả lời</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,9 +70,9 @@
                                     <td>{{ $row->question_nm }}</td>
                                     <td>{{ substr($row->question_code,0,50) }} {{ ($row->question_code != '')?'...':'' }}</td>
                                     <td>{{ $row->language_nm }}</td>
-                                    <td><a class="question_id" href="{{ asset('admin/question/update/'.$row->question_id)  }}" question_id="{{$row->question_id}}">Edit</a> | <a href="{{ 'question/del/'.$row->question_id }}">Del</a></td>
+                                    <td><a class="question_id" href="{{ asset('admin/question/update/'.$row->question_id)  }}" question_id="{{$row->question_id}}">Sửa</a> | <a href="{{ 'question/del/'.$row->question_id }}">Xóa</a></td>
                                     <td>
-                                        <a class="btn btn-success add_answer" href="{{ asset('admin/answer/create/'.$row->question_id) }}">Add answer</a>
+                                        <a class="btn btn-success add_answer" href="{{ asset('admin/answer/create/'.$row->question_id) }}">Gán</a>
                                     </td>
                                 </tr>
                             @endforeach

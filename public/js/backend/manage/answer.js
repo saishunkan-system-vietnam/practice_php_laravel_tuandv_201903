@@ -35,11 +35,6 @@ $(document).ready(function() {
             }
         });
 
-       /* $(document).on('change','#question_id', function(e) {
-            var question_id = $(this).val();
-            refer_question(question_id);
-        });*/
-
         $(document).on('click','#btnUpdate', function(e) {
             var data = getData(_obj);
             data['language_id'] = $('#language_id').val();
@@ -69,6 +64,7 @@ $(document).ready(function() {
  */
 function initialize() {
     try{
+        $(".element").hide();
         $("#question_add").hide();
         $(".datepicker").datepicker();
         $('#myTable').DataTable();
@@ -99,44 +95,3 @@ function getData(obj) {
     }
 }
 
-/**
- * refer : change when choose combobox Question
- *
- * @author : tuantv - 2019/03/12 - create
- * @author :
- * @return : null
- * @access : public
- * @see :
- */
-
-/*function refer_question(question_id) {
-    $.ajax({
-        url: '/admin/answer/refer_question',
-        type: 'GET',
-        dataType: 'json',
-        data: {
-            question_key : question_id
-        }
-    }).done(function(res) {
-       /!* console.log(res.refer_data);
-        debugger;*!/
-        if(res.refer_data[0]) {
-            for(var i=1;i<=4;i++) {
-                $("#ans_"+i).val(res.refer_data[i-1].answer_nm);
-                $("#ans_key_"+i).val(res.refer_data[i-1].answer_id);
-                $("#ans_correct_"+i).val(res.refer_data[i-1].ans_correct);
-                if(res.refer_data[i-1].ans_correct == 1) {
-                    $("#ans_correct"+i).attr("checked",true);
-                }
-            }
-           /!* $("#answer_nm").val(res.refer_data.answer_nm);
-            $("#ans_correct").val(res.refer_data.ans_correct);*!/
-        }else {
-            /!*$("#answer_nm").val("");
-            $("#ans_correct").val("");*!/
-            for(var i=1;i<=4;i++) {
-                $("#ans_"+i).val("");
-            }
-        }
-    });
-}*/

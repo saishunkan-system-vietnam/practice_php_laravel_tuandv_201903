@@ -46,8 +46,8 @@
                     <table id="myTable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Language name</th>
+                            <th>Mã ngôn ngữ</th>
+                            <th>Tên ngôn ngữ</th>
                             <th colspan="1"></th>
                         </tr>
                         </thead>
@@ -57,7 +57,7 @@
                                 <tr>
                                     <td class="text-center">{{ $row->language_id }}</td>
                                     <td>{{ $row->language_nm }}</td>
-                                    <td><a class="language_id" href="#" language_id="{{$row->language_id}}">Edit</a> | <a href="{{ 'language/del/'.$row->language_id }}">Del</a></td>
+                                    <td><a class="language_id" href="#" language_id="{{$row->language_id}}">Sửa</a> | <a href="{{ 'language/del/'.$row->language_id }}">Xóa</a></td>
                                 </tr>
                             @endforeach
                         @else

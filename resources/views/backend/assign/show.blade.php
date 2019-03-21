@@ -10,10 +10,11 @@
 @stop
 @section('directional')
     <h2>Kết quả bài làm</h2>
-    <p>Tên ứng viên: <b>{{ $member->username }}</b></p>
-    <p>Email: <b>{{ $member->email }}</b></p>
+    <p>Tên ứng viên: <b>{{ $data[0]->username }}</b></p>
+    <p>Email: <b>{{ $data[0]->email }}</b></p>
     <hr/>
     <h4>Mã đề thi: <b>{{ $data[0]->language_nm }}</b></h4>
+    <h4>Tổng điểm: <b style="color: red">{{ $score->total }}</b></h4>
 
     <div id="exam">
     @if($question[0])
@@ -22,10 +23,18 @@
                 <input type="hidden" class="question_id" value="{{ $row_question->question_id }}" />
                 <label class="question_nm">{{ $row_question->question_nm }}</label>
                     @if($data[0])
-                        @foreach($data as $rows)
+                        @foreach($data as $key => $rows)
                             @if($row_question->question_id == $rows->question_id)
-                                <div class="radio rad" style="margin-top: 0px" ans_id="{{ $rows->answer_id  }}">
-                                    <label><input type="radio" class="inputRad" name="{{ 'radio'.$row_question->question_id }}">{{ $rows->answer_nm }}</label>
+                                <div class="radio rad <?php
+                                    if($rows->ans_correct == 1) {
+                                        echo "correct";
+                                    }
+
+                                    if($rows->answer_member == 1 && $rows->answer_member != $rows->ans_correct) {
+                                        echo "wrong";
+                                    }
+                                ?>" style="margin-top: 0px" ans_id="{{ $rows->answer_id  }}">
+                                    <label><input type="radio" class="inputRad" name="{{ 'radio'.$row_question->question_id }}" {{ ($rows->ans_correct == 1)?"checked":"" }}>{{ $rows->answer_nm }}</label>
                                 </div>
                             @endif
                         @endforeach

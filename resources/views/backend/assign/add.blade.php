@@ -22,7 +22,7 @@
         @endforeach
     </div> <!-- end .flash-message -->
 
-    {!! Form::open(['method' => 'POST', 'route' => ['assign_action.store']]) !!}
+    {!! Form::open(['method' => 'POST', 'route' => ['assign_action.store'], 'id' => 'btnSubmit']) !!}
     <div class="form-group">
         <label>Mã ứng viên: <b class="member">{{ $model_member['member_id'] }}</b></label><br/>
         <label>Tên ứng viên: <b class="member">{{ $model_member['username'] }}</b></label>
@@ -53,7 +53,6 @@
             </div>
         @endforeach
     </div>
-
     <div id="exam_temp" style="display: none">
         <div class="form-group exam">
             <label for="language_id">Mã đề thi</label><br/>
@@ -73,8 +72,10 @@
     </div>
     <input type="hidden" name="member_id" value="{{ $model_member['member_id'] }}"/>
     <br/> {{--để tạm, sẽ sửa sau--}}
-    <br/><div class="form-group">
-        <input type="submit" id="btn" class="btn btn-primary" value="Lưu"/>
+    <div class="form-group">
+        <input type="button" id="" class="btn btn-primary" value="Lưu" onclick="checkSubmit()"/>
     </div>
+    <br/>
+    <br/>
     {!! Form::close() !!}
 @stop

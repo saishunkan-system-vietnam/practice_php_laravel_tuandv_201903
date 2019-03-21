@@ -88,6 +88,7 @@ $(document).ready(function() {
  */
 function initialize() {
     try{
+        $(".element").hide();
         $("#question_add").hide();
         $(".datepicker").datepicker();
         $('#myTable').DataTable();
