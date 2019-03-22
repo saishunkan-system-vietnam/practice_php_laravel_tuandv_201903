@@ -15,9 +15,14 @@
     color: #ff0419;
     width: 150px;
 }
-#account b {
+b {
     color: green;
 }
-#list_exam h4 {
-    margin-left: 10px;
+#list_exam p {
+    margin-left: 15px;
+}
+
+#list_exam a {
+    margin-left: 15px;
+    text-decoration: underline;
 }

@@ -22,7 +22,7 @@ class LoginController extends Controller
 
     public function postLogin(Request $request){
         if ($request->isMethod('post')) {
-
+            $test = $request->username;
             $messages = [
                 'required' => 'Trường :attribute bắt buộc nhập.',
             ];

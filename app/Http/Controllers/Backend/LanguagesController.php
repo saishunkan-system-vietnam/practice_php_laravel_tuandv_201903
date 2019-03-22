@@ -78,9 +78,10 @@ class LanguagesController extends AppController
                 ->withInput();
         } else {
             $data = new Language();
-            $data->language_nm      = $request->language_nm;
-            $data->language_parent      = $request->language_parent;
-            $data->del_flag         = 0;
+            $data->language_nm        = $request->language_nm;
+            $data->language_parent    = $request->language_parent;
+            $data->language_time      = $request->language_time;
+            $data->del_flag           = 0;
             $data->save();
 
             if($data->save()){
@@ -151,7 +152,8 @@ class LanguagesController extends AppController
         $result = DB::table('language')
             ->where("language_id",$id)
             ->update([
-                    "language_nm" => $request->language_nm
+                    "language_nm" => $request->language_nm,
+                    "language_time" => $request->language_time
                 ]);
         if($result){
             $request->session()->flash('alert-success', 'Sửa đổi thành công!');

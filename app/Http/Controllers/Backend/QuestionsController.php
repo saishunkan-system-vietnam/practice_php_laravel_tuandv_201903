@@ -82,7 +82,6 @@ class QuestionsController extends AppController
      * @see :
      */
     public function refer_language(Request $request) {
-
         Session::put('lang_session', $request->language_id);
         $language_id = $request->session()->get('lang_session');
         $data = Question::where('language_id', $language_id)->get();
@@ -118,7 +117,7 @@ class QuestionsController extends AppController
         } else {
             $data = new Question();
             $data->question_nm      = $request->question_nm;
-            $data->question_code    = $request->question_code;
+            $data->question_code    = htmlentities($request->question_code);
             $data->language_id      = $request->language_id;
             $data->del_flag         = 0;
             $data->save();
@@ -209,7 +208,7 @@ class QuestionsController extends AppController
     public function process_update(Request $request){
         $question_id = $request ->question_id;
         $question_nm = $request ->question_nm;
-        $question_code = $request->question_code;
+        $question_code = htmlentities($request->question_code);
         $language_id = $request ->language_id;
         $result = DB::table('question')
             ->where("question_id",$question_id)

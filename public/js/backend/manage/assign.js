@@ -90,9 +90,16 @@ $(document).ready(function() {
             }
         });
 
+        var language_init = $("#language_id").val();
         $(document).on('change','.language_id', function(e) {
-            var value = $(this).val();
-            $(this).parents(".form-inline").find(".language_id").val(value);
+            var language_id = $(this).val();
+            $(this).parents(".form-inline").find(".language_id").val(language_id);
+            if(language_init == language_id){
+                $(this).parents(".form-inline").find(".language_id").next().next().attr("disabled",false);
+            } else {
+                $(this).parents(".form-inline").find(".language_id").next().next().attr("disabled",true);
+            }
+
         });
 
 

@@ -56,7 +56,7 @@
                         <tr>
                             <th>Mã câu hỏi</th>
                             <th>Câu dạng văn bản</th>
-                            <th>Câu hỏi dạng code</th>
+                            {{--<th>Câu hỏi dạng code</th>--}}
                             <th>Mã ngôn ngữ</th>
                             <th></th>
                             <th>Gán câu trả lời</th>
@@ -68,7 +68,7 @@
                                 <tr>
                                     <td class="text-center">{{ $row->question_id }}</td>
                                     <td>{{ $row->question_nm }}</td>
-                                    <td>{{ substr($row->question_code,0,50) }} {{ ($row->question_code != '')?'...':'' }}</td>
+                                    {{--<td>{{ substr($row->question_code,0,50) }} {{ ($row->question_code != '')?'...':'' }}</td>--}}
                                     <td>{{ $row->language_nm }}</td>
                                     <td><a class="question_id" href="{{ asset('admin/question/update/'.$row->question_id)  }}" question_id="{{$row->question_id}}">Sửa</a> | <a href="{{ 'question/del/'.$row->question_id }}">Xóa</a></td>
                                     <td>

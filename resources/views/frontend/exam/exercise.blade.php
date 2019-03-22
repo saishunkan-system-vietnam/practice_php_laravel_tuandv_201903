@@ -1,26 +1,25 @@
 @extends('frontend.layout')
+@section('title')
+    Bài làm ứng viên
+@stop
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/manage/exercise.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.css">
 @stop
 
 @section('javascript')
     <script type="text/javascript" src="{{ asset('js/frontend/manage/exercise.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.js"></script>
 @stop
 
 @section('account')
     <div id="account">
         <h4>Ứng viên: <b>{{ $username }}</b></h4>
-        <a class="" href="../../admin/logout"> Đăng xuất</a>
     </div>
 @stop
-
 @section('list_exam')
     <div id="list_exam">
-        <h4>Chuyên đề: <b>{{ $language }}</b></h4>
+        <p>Chuyên đề: <b>{{ $language }}</b></p>
+        <a class="" href="../../admin/logout"> Đăng xuất</a>
         <input type="hidden" id="language_key" value="{{ $language_key }}"/>
        {{-- @if(isset($titleExam[0]))
             @foreach($titleExam as $row)
@@ -44,6 +43,13 @@
                                     <div class="form-group exam">
                                         <input type="hidden" class="question_id" value="{{ $question['question_id'] }}" />
                                         <label class="question_nm">{{ $question['question_nm'] }}</label>
+                                        <?php
+                                            if( $question['question_code'] != '') {
+                                                echo '<pre class="question_code">'.html_entity_decode($question['question_code']).'</pre>';
+                                            } else {
+                                                echo '';
+                                            }
+                                        ?>
                                         @foreach($data_answer as $answer)
                                             @if($answer->question_id == $question['question_id'] )
                                                 <div class="radio rad" style="margin-top: 0px" ans_id="{{ $answer->answer_id  }}">
@@ -73,4 +79,5 @@
     </div>
     <input type="hidden" id="token" value="{{ $token }}" />
     <input type="hidden" id="assign_id" value="{{ $assign_id }}" />
+    <input type="hidden" id="language_time" value="{{ $time }}" />
 @stop

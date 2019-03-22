@@ -16,6 +16,11 @@
 </div>
 
 <div class="form-group">
+    <label for="language_time">Thời gian làm bài:</label>
+    <input type="text" class="form-control" id="language_time" name="language_time">
+</div>
+
+<div class="form-group">
     <input type="submit" id="Lưu" class="btn btn-primary" value="Lưu"/>
 </div>
 <br/> {{--để tạm, sẽ sửa sau--}}

@@ -10,8 +10,8 @@
  */
 var _obj = {
       'language_id'       : {'type': 'text'}
-    , 'language_nm'      : {'type': 'text'}
-
+    , 'language_nm'       : {'type': 'text'}
+    , 'language_time'     : {'type': 'text'}
 };
 
 $(document).ready(function() {

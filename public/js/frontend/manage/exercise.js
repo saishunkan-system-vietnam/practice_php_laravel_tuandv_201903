@@ -11,8 +11,8 @@
  */
 $(document).ready(function() {
     try {
-
-        function startTimer(duration, display) {
+        var time = $("#language_time").val();
+        function startTimer(duration, display, time) {
             var timer = duration, minutes, seconds;
             setInterval(function () {
                 minutes = parseInt(timer / 60, 10)
@@ -34,30 +34,9 @@ $(document).ready(function() {
             }, 1000);
         }
 
-       /* $(document).on('click','#ReturnEmail', function(e) {
-            var exam = $("#exam").clone();
-            $a = 1;
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('input[name="csrf-token"]').attr("content")
-                }
-            });
-            $.ajax({
-                url: '/home/result',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    exam : 1
-                }
-            }).done(function(res) {
-
-            });
-
-        });*/
-
-        var fiveMinutes = 3600 * 1,
+        var fiveMinutes = time * 1,
             display = document.querySelector('#time');
-        startTimer(fiveMinutes, display);
+        startTimer(fiveMinutes, display, time);
 
 
 
@@ -120,11 +99,14 @@ $(document).ready(function() {
                     }
                 }
 
+                var msg = "Số câu trả lời đúng: "+"<b>"+res.score+"</b>\nKết quả bài làm đã được gửi vào địa chỉ email: <b>"+res.email+"</b>";
                 $.MessageBox({
                     //input    : true,
-                    message  : "Số câu trả lời đúng: "+res.score
+                    message  : msg
                 }).done(function(){
-                    alert(1);
+                    $("#btnSubmit").remove();
+                    $("#time").closest("div").remove();
+                    $("input[type=radio]").attr("disabled",true);
                 });
                 // res.score
                 $("#ReturnEmail").trigger("click");

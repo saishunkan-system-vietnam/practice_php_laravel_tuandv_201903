@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <link rel="shortcut icon" href="{{ asset("css/frontend/images/logo.jpg") }}" type="image/x-icon" />
+    <title> @yield('title')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -21,7 +21,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/frontend/template/layout.css') }}" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.css">
     @yield('style')
     @yield('javascript')
@@ -44,15 +43,17 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
+        <nav id="header" class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 0px">
+            <h2>Saishunkan System</h2>
+        </nav>
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            <button class="btn btn-primary" id="menu-toggle">Ẩn/Hiện danh mục</button>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -72,7 +73,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div>--}}
         </nav>
 
         <div class="container-fluid">
@@ -97,6 +98,8 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{{-- libary messagebox--}}
+<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.0.0/dist/messagebox.min.js"></script>
 
 <!-- Menu Toggle Script -->
 <script>

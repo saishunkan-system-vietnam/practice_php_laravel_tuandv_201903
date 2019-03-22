@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label for="question_code">Question code:</label>
-        <textarea type="" class="form-control" id="question_code" name="question_code" rows="15" style="background: black !important;">{{ $data->question_code }}</textarea>
+        <textarea type="" class="form-control" id="question_code" name="question_code" rows="15" style="background: black !important;">{{ html_entity_decode($data->question_code) }}</textarea>
     </div>
 
     <div class="form-group">

@@ -10,17 +10,23 @@
 {!! Form::open(['method' => 'POST', 'style'=>'width:1000px']) !!}
 
 <div class="form-group">
-    <label for="language_nm">Language name:</label>
-    <input type="text" class="form-control" id="language_nm" name="language_nm" value="{{ $data->language_nm }}">
+    <label for="language_nm">Ngôn ngữ lập trình - cấp 1:</label>
+    <input type="text" class="form-control" id="language_nm" name="language_nm" value="{{ $data->language_nm }}" disabled>
 </div>
 
 <div class="form-group">
-<select name="language_parent" class="form-control" id="language_parent">
-    <option value="0"></option>
-    @foreach($cb_language as $rows)
-        <option value="{{ $rows->language_id }}" {{ ($rows->language_id == $data->language_parent)?'selected':'' }}>{{ $rows->language_nm }}</option>
-    @endforeach
-</select>
+    <label>Ngôn ngữ lập trình - cấp 2: </label>
+    <select name="language_parent" class="form-control" id="language_parent">
+        <option value="0"></option>
+        @foreach($cb_language as $rows)
+            <option value="{{ $rows->language_id }}" {{ ($rows->language_id == $data->language_parent)?'selected':'' }}>{{ $rows->language_nm }}</option>
+        @endforeach
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="language_time">Thời gian làm bài:</label>
+    <input type="text" class="form-control" id="language_time" name="language_time" value="{{ $data->language_time }}">
 </div>
 
 <div class="form-group">

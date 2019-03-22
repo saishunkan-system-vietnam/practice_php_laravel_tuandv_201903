@@ -29,7 +29,7 @@
                     <span><a href="{{ $info['url'] }}"> {{ $info['url'] }}</a></span><br/>
                     <span>Nếu bạn cần thêm thông tin gì có thể liên lạc với chúng tôi theo thông tin bên dưới: </span><br/>
                     <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Điện thoại: {{ $info['tel'] }}</span><br/>
-                    <span style="color: brown; font-weight: bold; text-decoration: none;text-shadow: white 0.1em 0.1em 0.2em">Email công ty: {{ $info['email'] }}</span><br/>
+                    <span style="color: brown; font-weight: bold; text-decoration: none;text-shadow: white 0.1em 0.1em 0.2em">Email công ty: {{ $info['email_company'] }}</span><br/>
                     <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Địa chỉ: {{ $info['address'] }}</span><br/>
                 </div>
             </div>
@@ -38,9 +38,6 @@
         <div class="footer" style="background:#bec1c7; margin: 0; float: left; width: 420px; height: 40px; line-height: 40px; padding-left: 20px">
             © Copyright 2019 {{ $info['company_name'] }}
         </div>
-
-
     </div>
-
 
 </div>

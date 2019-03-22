@@ -11,7 +11,8 @@
 // quản lý câu hỏi
 var _obj = {
       'question_id'       : {'type': 'text'},
-      'question_nm'       : {'type': 'text'}
+      'question_nm'       : {'type': 'text'},
+      'question_code'     : {'type': 'text'}
 };
 
 $(document).ready(function() {

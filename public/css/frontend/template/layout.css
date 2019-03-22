@@ -1,14 +1,12 @@
+/*#sidebar-wrapper {
+    background:url("../images/portfolio-1.jpg") !important;
+}*/
+#header {
+    margin:0 auto;
+}
 
-@media (min-width: 1200px) {
-    #sidebar-wrapper {
-        width: 250px;
-    }
-    .list-group-item {
-        width: 220px;
-    }
-    .list-group h3 {
-        width: 220px;
-    }
+#header h2 {
+    margin: 10px auto;
 }
 
 .container-fluid {
@@ -21,5 +19,16 @@
 
 .list-group-item {
     color: #3765ff !important;
-    /*font-weight: bold;*/
+}
+
+@media (min-width: 1200px) {
+    #sidebar-wrapper {
+        width: 250px;
+    }
+    .list-group-item {
+        width: 220px;
+    }
+    .list-group h3 {
+        width: 220px;
+    }
 }

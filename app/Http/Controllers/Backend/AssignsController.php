@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Helpers;
+use Illuminate\Support\Facades\URL;
 class AssignsController extends AppController
 {
     /**
@@ -146,6 +147,7 @@ class AssignsController extends AppController
         $return = true;
         $valiable = $request->input();
         $member_id = $request->member_id;
+        //$assign_id = $request->assign_id;
         try {
             DB::beginTransaction();
             foreach ($valiable['arr'] as $row) {
@@ -163,6 +165,8 @@ class AssignsController extends AppController
                 } else {
                     $data->member_id = $member_id;
                     $data->language_id = $row['language_id'];
+                    $data->accept_email = 0;
+                    $data->status_exam = 0;
                     $data->del_flag = 0;
                     $result = $data->save();
                 }
@@ -240,11 +244,21 @@ class AssignsController extends AppController
             ->groupBy('result.ans_correct','result.answer_member')
             ->first();
 
+       /* $strUrl = URL::current();
+        $url = substr($strUrl,0,35);*/
+
+        $user_nm = Session::get('username');
+        $user_role = DB::table('member')
+            ->select("role")
+            ->where('username', $user_nm)
+            ->first();
+        $role = $user_role->role;
         return view("backend.assign.show")->with([
-            'data'      => $data,
-            'user'      => $user,
-            'question'  => $question,
-            'score'     => $score
+            'data'     => $data,
+            'user'     => $user,
+            'question' => $question,
+            'score'    => $score,
+            'role'     => $role
         ]);
     }
 

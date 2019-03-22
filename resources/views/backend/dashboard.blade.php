@@ -1,3 +1,4 @@
+
 @extends('backend.layout')
 
 @section('header')
@@ -86,7 +87,7 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <img src="{{'../imgs/backend/logo.jpg'}}" width="90px" height="90px"/>
+                {{Html::image('../imgs/backend/logo.jpg','sanshunkan', array('width' => '90px' , 'height' => '90px')) }}
             </div>
             <div class="nalika-profile">
                 <div class="profile-dtl">
@@ -100,26 +101,26 @@
                     </ul>
                 </div>
             </div>
-            <div class="left-custom-menu-adp-wrap comment-scrollbar">
-                <nav class="sidebar-nav left-sidebar-menu-pro">
-                    <ul class="metismenu" id="menu1">
-                        <li class="active">
-                            {{--<a class="has-arrow" href="index.html">
-                                <i class="icon nalika-home icon-wrap"></i>
-                                <span class="mini-click-non">Ecommerce</span>
-                            </a>--}}
-                            <ul class="submenu-angle" aria-expanded="true">
-                                <li><a title="Quản lý ngôn ngữ" href="{{ asset('admin/language') }}"><span class="mini-sub-pro">Quản lý ngôn ngữ</span></a></li>
-                                <li><a title="Quản lý câu hỏi" href="{{ asset('admin/question') }}"><span class="mini-sub-pro">Quản lý câu hỏi</span></a></li>
-                                {{--<li><a title="Quản lý câu trả lời" href="{{ asset('admin/answer') }}"> <span class="mini-sub-pro">Quản lý câu trả lời</span></a></li>--}}
-                                <li><a title="Quản lý ứng viên" href="{{ asset('admin/member') }}"><span class="mini-sub-pro">Quản lý ứng viên</span></a></li>
-                                <li><a title="Quản lý đề thi" href="{{ URL::route('assign_action.index')}}"><span class="mini-sub-pro">Quản lý đề thi</span></a></li>
-                            </ul>
-                        </li>
+            @if(isset($role) && $role == 2)
+                {{--{{ '1' }}--}}
+            @else
+                <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                    <nav class="sidebar-nav left-sidebar-menu-pro">
+                        <ul class="metismenu" id="menu1">
+                            <li class="active">
+                                <ul class="submenu-angle" aria-expanded="true">
+                                    <li><a title="Quản lý ngôn ngữ" href="{{ asset('admin/language') }}"><span class="mini-sub-pro">Quản lý ngôn ngữ</span></a></li>
+                                    <li><a title="Quản lý câu hỏi" href="{{ asset('admin/question') }}"><span class="mini-sub-pro">Quản lý câu hỏi</span></a></li>
+                                    {{--<li><a title="Quản lý câu trả lời" href="{{ asset('admin/answer') }}"> <span class="mini-sub-pro">Quản lý câu trả lời</span></a></li>--}}
+                                    <li><a title="Quản lý ứng viên" href="{{ asset('admin/member') }}"><span class="mini-sub-pro">Quản lý ứng viên</span></a></li>
+                                    <li><a title="Quản lý đề thi" href="{{ URL::route('assign_action.index')}}"><span class="mini-sub-pro">Quản lý đề thi</span></a></li>
+                                </ul>
+                            </li>
 
-                    </ul>
-                </nav>
-            </div>
+                        </ul>
+                    </nav>
+                </div>
+            @endif
         </nav>
     </div>
     <!-- Start Welcome area -->
@@ -171,7 +172,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src=" {{'../imgs/backend/contact/1.jpg'}}" alt="">
+                                                                        <img src=" {{ url('../imgs/backend/contact/1.jpg') }}" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -184,7 +185,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src=" {{'../imgs/backend/contact/2.jpg'}}" alt="">
+                                                                        <img src=" {{url('../imgs/backend/contact/2.jpg')}}" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -196,7 +197,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src=" {{'../imgs/backend/contact/3.jpg'}}" alt="">
+                                                                        <img src=" {{url('../imgs/backend/contact/3.jpg')}}" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -208,7 +209,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="message-img">
-                                                                        <img src=" {{'../imgs/backend/contact/4.jpg'}}" alt="">
+                                                                        <img src=" {{url('../imgs/backend/contact/4.jpg')}}" alt="">
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
@@ -299,7 +300,7 @@
                                                         </li>
                                                         <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
                                                         </li>
-                                                        <li><a href="logout"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
+                                                        <li><a href="{{ url('admin/logout') }}"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -328,7 +329,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/4.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/4.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -341,7 +342,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/1.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/1.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -354,7 +355,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/2.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/2.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -367,7 +368,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/3.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/3.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -380,7 +381,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/4.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/4.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -393,7 +394,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/1.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/1.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -406,7 +407,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/2.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/2.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -419,7 +420,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/3.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/3.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -432,7 +433,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/2.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/2.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -445,7 +446,7 @@
                                                                                 <a href="#">
                                                                                     <div class="notes-list-flow">
                                                                                         <div class="notes-img">
-                                                                                            <img src=" {{'../imgs/backend/contact/1.jpg'}}" alt="">
+                                                                                            <img src=" {{url('../imgs/backend/contact/1.jpg')}}" alt="">
                                                                                         </div>
                                                                                         <div class="notes-content">
                                                                                             <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
