@@ -26,7 +26,7 @@
                     <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Xin chào: {{ $info['name'] }} - {{ $info['email'] }}</p>
                     <span> Cảm ơn bạn đã tham gia ứng tuyển vào công ty<br/></span>
                     <span>Dưới đây là link làm bài test của chúng tôi</span><br/>
-                    <span><a href="{{ $info['url'] }}"> {{ $info['url'] }}</a></span><br/>
+                    <span><a href="{{ $info['url'] }}"> Link bài làm</a></span><br/>
                     <span>Nếu bạn cần thêm thông tin gì có thể liên lạc với chúng tôi theo thông tin bên dưới: </span><br/>
                     <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Điện thoại: {{ $info['tel'] }}</span><br/>
                     <span style="color: brown; font-weight: bold; text-decoration: none;text-shadow: white 0.1em 0.1em 0.2em">Email công ty: {{ $info['email_company'] }}</span><br/>

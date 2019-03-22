@@ -25,7 +25,7 @@
         ">
                 <div>
                     <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Kết quả bài test ứng viên</p>
-                    <p style="color: blue; font-weight: bold; text-decoration: underline; text-shadow: white 0.1em 0.1em 0.2em; font-size: 18px"><a href="{{ $info['url'] }}"> {{ $info['url'] }}</a></p>
+                    <p style="color: blue; font-weight: bold; text-decoration: underline; text-shadow: white 0.1em 0.1em 0.2em; font-size: 18px"><a href="{{ $info['url'] }}">Link kết quả bài làm</a></p>
                     <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">{{ $info['tel'] }}</p>
                     <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">{{ $info['email'] }}</p>
                     <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">{{ $info['address'] }}</p>

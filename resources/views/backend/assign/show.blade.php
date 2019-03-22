@@ -36,7 +36,7 @@
                                         echo "wrong";
                                     }
                                 ?>" style="margin-top: 0px" ans_id="{{ $rows->answer_id  }}">
-                                    <label><input type="radio" class="inputRad" name="{{ 'radio'.$row_question->question_id }}" {{ ($rows->ans_correct == 1)?"checked":"" }}>{{ $rows->answer_nm }}</label>
+                                    <label><input type="radio" class="inputRad" name="{{ 'radio'.$row_question->question_id }}" {{ ($rows->ans_correct == 1)?"checked":"" }} disabled>{{ $rows->answer_nm }}</label>
                                 </div>
                             @endif
                         @endforeach
