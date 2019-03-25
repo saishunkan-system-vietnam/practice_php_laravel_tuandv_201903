@@ -16,13 +16,100 @@
     width: 150px;
 }
 b {
-    color: green;
+    color: #337ab7;
 }
 #list_exam p {
     margin-left: 15px;
 }
 
 #list_exam a {
-    margin-left: 15px;
     text-decoration: underline;
 }
+#sidebar-wrapper {
+   /* background: url("../images/sidenav4.jpg") !important;
+    width: 200px;
+    height: 150px;
+    background-color: #3e3e3e !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    opacity: 0.5;*/
+}
+.mgImage {
+    margin: 0 auto;
+}
+
+.info {
+    margin: 20px auto;
+    width: 210px;
+  /*  line-height: 30px;
+    text-align: center;
+    width: 180px;
+    height: 30px;
+    background: blue;
+*/
+}
+.info h4 {
+    background: url("../../../imgs/frontend/pd-lambai-menu.png") !important;;
+    line-height: 35px;
+    height: 35px;
+    text-align: center;
+    color: white;
+    margin: 0px;
+}
+.info-content {
+    background: #f5f3ee;
+    margin: 0;
+}
+.info-content ul {
+    padding: 0px;
+}
+.info-content ul li {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid darkgrey;
+}
+.info-content ul li:last-child {
+    border-bottom: none;
+}
+.info-content ul li a{
+    text-decoration: none !important;
+}
+.iCheck {
+    background: lightblue;
+}
+.icolor1 {
+    background: lightblue;
+    width: 15px;
+    height: 15px;
+}
+.icolor2 {
+    background: #f5f3ee;
+    width: 15px;
+    height: 15px;
+    border: 1px solid grey;
+}
+.icheck, .not_icheck {
+   margin-top: 3px;
+    margin-left: 15px;
+}
+.icheck,.not_icheck {
+    display: flex
+}
+.icheck span, .not_icheck span {
+    margin-left: 10px;
+    margin-top: -2px;
+}
+.noneUnderline {
+    border-bottom: none !important;
+}
+.info-content span {
+    display: inherit;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+.info-content span:last-child {
+    margin-bottom: 10px;
+}
+
+

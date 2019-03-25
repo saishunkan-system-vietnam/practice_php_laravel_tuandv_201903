@@ -12,27 +12,56 @@
 @stop
 
 @section('account')
-    <div id="account">
+   {{-- <div id="account">
         <h4>Ứng viên: <b>{{ $username }}</b></h4>
-    </div>
+    </div>--}}
 @stop
 @section('list_exam')
     <div id="list_exam">
-        <p>Chuyên đề: <b>{{ $language }}</b></p>
-        <a class="" href="../../admin/logout"> Đăng xuất</a>
+        <div class="row images">
+            {{Html::image('../imgs/backend/logo.jpg','sanshunkan', array('width' => '120px' , 'height' => '120px','class'=>'mgImage')) }}
+        </div>
+        <div class="info">
+            <h4><i class="info-member"></i> Thông tin ứng viên</h4>
+            <div class="info-content">
+                <span class="noneUnderline">Ứng viên: <b>{{ $username }}</b></span>
+                <span class="noneUnderline">Chuyên đề: <b>{{ $language }}</b></span>
+                <span style="padding-bottom: 10px"><a class="" href="../../admin/logout"> Đăng xuất</a></span>
+            </div>
+        </div>
+
+        <div class="info">
+            <h4><i class="info-member"></i> Danh sách câu hỏi</h4>
+            <div class="info-content">
+                <ul>
+                    @if(isset($data_question[0]))
+                        @foreach($data_question as $question)
+                            <li> <a href="#neo{{ $question['question_id'] }}">{{ $question['question_nm'] }}</a></li>
+                        @endforeach
+                    @endif
+                </ul>
+            </div>
+            <div class="note">
+                <label>Ghi chú: </label>
+                <div class="icheck" style="">
+                    <div class="icolor1"></div>
+                    <span>Câu hỏi đã trả lời</span>
+                </div>
+                <div class="not_icheck" style="">
+                    <div class="icolor2"></div>
+                    <span>Câu hỏi chưa trả lời</span>
+                </div>
+            </div>
+        </div>
         <input type="hidden" id="language_key" value="{{ $language_key }}"/>
-       {{-- @if(isset($titleExam[0]))
-            @foreach($titleExam as $row)
-                <a href="{{ URL::route('home_action.show', ['language_id' => $row->language_id]) }}" class="list-group-item list-group-item-action bg-light">{{ $row->language_nm }}</a>
-            @endforeach
-        @endif--}}
+
     </div>
 @stop
 
 @section('content')
     <input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 col-xs-12">
             <div class="panel-group">
                 <div class="panel panel-default bg_panel">
                     <div class="panel-heading"> <b>{{ $language_children }}</b></div>
@@ -43,6 +72,7 @@
                                     <div class="form-group exam">
                                         <input type="hidden" class="question_id" value="{{ $question['question_id'] }}" />
                                         <label class="question_nm">{{ $question['question_nm'] }}</label>
+                                        <span id="neo{{ $question['question_id'] }}" style="visibility: hidden;">neo</span>
                                         <?php
                                             if( $question['question_code'] != '') {
                                                 echo '<pre class="question_code">'.html_entity_decode($question['question_code']).'</pre>';
@@ -70,8 +100,8 @@
             </div>
         </div>
 
-        <div class="col-md-3" style="">
-            <div class="text-center">
+        <div id="rightPage" class="col-md-3 col-xs-12" style="">
+            <div class="text-center time">
                 <h2>Thời gian còn lại</h2>
                 <span id="time" style="font-size: 80px">05:00</span>
             </div>

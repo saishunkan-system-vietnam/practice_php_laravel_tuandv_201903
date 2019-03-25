@@ -30,6 +30,7 @@ $(document).ready(function() {
                     var html = "<h2>Thời gian làm bài kết thúc</h2>";
                     $("#time").after(html);
                     $("#time").remove();
+                    $("#btnSubmit").trigger("click");
                 }
             }, 1000);
         }
@@ -41,13 +42,18 @@ $(document).ready(function() {
 
 
         $(document).on('click','input[type=radio]', function(e) {
-             $(this).parents('.exam').find('input[answer_member=1]').attr("answer_member","0");
+            $(this).parents('.exam').find('input[answer_member=1]').attr("answer_member","0");
             if($(this).is(':checked')) {
                 $(this).parents('.rad').find('.answer_id:first').attr("answer_member","1");
             }
+
+            //show status question - sidebar
+            var neo_id = $(this).parents('.exam').find('.question_id:first').val();
+            $(".info-content li a[href='#neo"+neo_id+"']").parents('li').addClass('iCheck');
         });
 
         $(document).on('click','#btnSubmit', function(e) {
+            $("#btnSubmit").remove();
             var token = $("#token").val();
             var obj = {};
             obj = getData();

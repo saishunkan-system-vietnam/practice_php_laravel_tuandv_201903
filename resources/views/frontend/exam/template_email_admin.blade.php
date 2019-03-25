@@ -1,4 +1,3 @@
-
 <div id="content" style="color: white">
     <div class="frame" style="
          width: 440px;
@@ -25,7 +24,7 @@
         ">
                 <div>
                     <p style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Kết quả làm bài test của ứng viên</p>
-                    <span style="font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em; font-size: 18px">Link: <a style="color: blue;" href="{{ $info['url'] }}"> Link kết quả bài làm ứng viên</a></span><br/>
+                    <span style="font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em; font-size: 18px"><a style="color: blue;" href="{{ $info['url'] }}"> Link kết quả bài làm ứng viên</a></span><br/>
                     <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Tên ứng viên: {{ $info['name'] }}</span><br/>
                     <span style="color: blue; font-weight: bold; text-decoration: none; text-shadow: white 0.1em 0.1em 0.2em;">Email: {{ $info['email'] }}</span><br/>
                     <span style="color: brown; font-weight: bold; text-shadow: white 0.1em 0.1em 0.2em">Chuyên đề: {{ $info['language_name'] }}</span><br/>
@@ -35,13 +34,8 @@
                 </div>
             </div>
         </div>
-
         <div class="footer" style="background:#bec1c7; margin: 0; float: left; width: 420px; height: 40px; line-height: 40px; padding-left: 20px">
             © Copyright 2019 {{ $info['company_name'] }}
         </div>
-
-
     </div>
-
-
 </div>

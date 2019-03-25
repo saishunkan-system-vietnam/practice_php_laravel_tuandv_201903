@@ -7,11 +7,13 @@
 
 #header h2 {
     margin: 10px auto;
+    color: #984e4c;
+    font-weight: bold;
 }
 
-.container-fluid {
+/*.container-fluid {
     margin-top: -20px;
-}
+}*/
 
 .bg_panel {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -30,5 +32,80 @@
     }
     .list-group h3 {
         width: 220px;
+    }
+}
+.container-fluid {
+    background: url("../../../imgs/frontend/bg.png") !important;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    #header {
+        width: 585px;
+    }
+
+    .sidebar {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #time {
+        font-size: 40px !important;
+    }
+
+    #rightPage h2 {
+        font-size: 20px;
+    }
+
+    #rightPage {
+        padding-left: 0px;
+    }
+
+    #rightPage .time {
+        width: 160px;
+        background: red;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #rightPage h2 {
+        font-size: 20px;
+    }
+
+    #time {
+        font-size: 40px !important;
+    }
+
+    .sidebar {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+
+@media only screen and (max-width: 667px) {
+    #wrapper {
+        display: block !important;
+    }
+    .images {
+        display: none;
+    }
+    .info-content {
+        width: 360px;
+        margin-left: 20px;
+    }
+    .info {
+        margin: 0 auto;
+    }
+    .info h4 {
+        width: 360px;
+    }
+    #header h2:first-child {
+        font-size: 25px;
+    }
+    #user {
+        display: none;
+    }
+    #sidebar-wrapper {
+        min-height: 100px;
     }
 }

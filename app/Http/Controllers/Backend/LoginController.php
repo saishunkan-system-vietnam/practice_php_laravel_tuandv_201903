@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
 class LoginController extends Controller
 {
     public function getLogin(Request $request) {
@@ -22,7 +23,6 @@ class LoginController extends Controller
 
     public function postLogin(Request $request){
         if ($request->isMethod('post')) {
-            $test = $request->username;
             $messages = [
                 'required' => 'Trường :attribute bắt buộc nhập.',
             ];
@@ -36,16 +36,6 @@ class LoginController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             } else {
-           /* }
-            $formData = Input::only('username','password');
-            $rules = [
-                'username' => 'required',
-                'password' => 'required'
-            ];
-            $validator = \Validator::make($formData, $rules);
-            if ($validator->fails()) {
-                return Redirect::back()->withInput()->withErrors($validator->errors());
-            }else {*/
                 $arr_admin=[
                     'username'  => $request->username,
                     'password'  => $request->password,

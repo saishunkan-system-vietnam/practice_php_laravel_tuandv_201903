@@ -58,7 +58,7 @@
                                     <td>{{ $row->username }}</td>
                                     <td class="text-center">{{ $row->language_id }}</td>
                                     <td>{{ $row->language_nm }}</td>
-                                    <td><a class="assign_id" href="{{ URL::route('assign_action.show',['member_id' => $row->member_id]) }}">View</a> | <a href="{{ 'assign/del/'.$row->assign_id }}">Del</a></td>
+                                    <td><a class="assign_id" href="{{ URL::route('assign_action.show',['member_id' => $row->member_id,'language_id'=>$row->language_id]) }}">View</a> | <a href="{{ 'assign/del/'.$row->assign_id }}">Del</a></td>
                                 </tr>
                             @endforeach
                         @else

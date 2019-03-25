@@ -188,7 +188,7 @@ class AssignsController extends AppController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($member_id)
+    public function show($member_id,$language_id)
     {
         parent::__construct();
         $user = $this->username;
@@ -211,7 +211,9 @@ class AssignsController extends AppController
             ->leftJoin('answer', 'result.answer_id', '=', 'answer.answer_id')
             ->leftJoin('member', 'result.member_id', '=', 'member.member_id')
             ->where([
+
                 'result.member_id' => $member_id,
+                'result.language_id' => $language_id,
                 'result.del_flag'  => 0
             ])
             ->get();
@@ -227,8 +229,9 @@ class AssignsController extends AppController
             ->leftJoin('question', 'result.question_id', '=', 'question.question_id')
             ->leftJoin('member', 'result.member_id', '=', 'member.member_id')
             ->where([
-                'result.member_id' => $member_id,
-                'result.del_flag'  => 0
+                'result.member_id'   => $member_id,
+                'result.language_id' => $language_id,
+                'result.del_flag'    => 0
             ])
             ->distinct()
             ->get();
@@ -236,12 +239,18 @@ class AssignsController extends AppController
         $score = DB::table('result')
             ->select(DB::raw('count(*) as total'))
             ->where([
-                'result.member_id' => $member_id,
-                'result.ans_correct' => 1,
+                'result.member_id'     => $member_id,
+                'result.language_id'   => $language_id,
+                'result.ans_correct'   => 1,
                 'result.answer_member' => 1,
-                'result.del_flag'  => 0
+                'result.del_flag'      => 0
             ])
-            ->groupBy('result.ans_correct','result.answer_member')
+            ->groupBy(
+                'result.member_id',
+                'result.language_id',
+                'result.ans_correct',
+                'result.answer_member'
+            )
             ->first();
 
        /* $strUrl = URL::current();
