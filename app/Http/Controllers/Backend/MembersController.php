@@ -25,7 +25,9 @@ class MembersController extends AppController
     {
         parent::__construct();
         $user = $this->username;
-
+        if($user == '') {
+            return redirect('admin/login');
+        }
         $data = DB::table('Member')
             ->where('Member.del_flag',0)
             ->orderBy('Member.member_id', 'desc')
@@ -187,11 +189,14 @@ class MembersController extends AppController
     public function destroy($id)
     {
         $del_flag = 1; // row deleted = 1
-        $model = Member::find($id);
-        $model->del_flag = $del_flag;
-        $model->save();
-        if($model->save()){
+        $result = DB::table('member')
+            ->where("member_id",$id)
+            ->update([
+                "del_flag" => $del_flag
+            ]);
+        if($result){
             return redirect('admin/member');
         }
     }
+
 }

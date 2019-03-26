@@ -33,7 +33,7 @@
                 @endif
             @endforeach
         </div>
-
+        <input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
         <div id="wrap" class="wrap">
             <div id="assign_show">
                 <h5>Hiển thị danh sách</h5>
@@ -58,7 +58,7 @@
                                     <td>{{ $row->username }}</td>
                                     <td class="text-center">{{ $row->language_id }}</td>
                                     <td>{{ $row->language_nm }}</td>
-                                    <td><a class="assign_id" href="{{ URL::route('assign_action.show',['member_id' => $row->member_id,'language_id'=>$row->language_id]) }}">View</a> | <a href="{{ 'assign/del/'.$row->assign_id }}">Del</a></td>
+                                    <td><a class="assign_id" href="{{ URL::route('assign_action.show',['member_id' => $row->member_id,'language_id'=>$row->language_id]) }}">View</a> | <a class="delRow" assign_id="{{ $row->assign_id }}">Del</a></td>
                                 </tr>
                             @endforeach
                         @else

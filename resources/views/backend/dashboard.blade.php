@@ -80,7 +80,13 @@
 @stop
 
 @section('content')
-
+<?php
+    if(isset($cookie)) {
+        echo $cookie;
+    }else {
+        echo "Hết phiên làm việc";
+    }
+?>
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -91,7 +97,7 @@
             </div>
             <div class="nalika-profile">
                 <div class="profile-dtl">
-                    <h2>SAISHUNKAN SYSTEM {{--<span class="min-dtn">Das</span>--}}</h2>
+                    <h2>SAISHUNKAN SYSTEM</h2>
                 </div>
                 <div class="profile-social-dtl">
                     <ul class="dtl-social">
@@ -111,7 +117,6 @@
                                 <ul class="submenu-angle" aria-expanded="true">
                                     <li><a title="Quản lý ngôn ngữ" href="{{ asset('admin/language') }}"><span class="mini-sub-pro">Quản lý ngôn ngữ</span></a></li>
                                     <li><a title="Quản lý câu hỏi" href="{{ asset('admin/question') }}"><span class="mini-sub-pro">Quản lý câu hỏi</span></a></li>
-                                    {{--<li><a title="Quản lý câu trả lời" href="{{ asset('admin/answer') }}"> <span class="mini-sub-pro">Quản lý câu trả lời</span></a></li>--}}
                                     <li><a title="Quản lý ứng viên" href="{{ asset('admin/member') }}"><span class="mini-sub-pro">Quản lý ứng viên</span></a></li>
                                     <li><a title="Quản lý đề thi" href="{{ URL::route('assign_action.index')}}"><span class="mini-sub-pro">Quản lý đề thi</span></a></li>
                                 </ul>
@@ -843,14 +848,14 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mgTop" >
-                            <div class="breadcome-list" style="background: white">
-                                <div class="row">
+                            <div class="breadcome-list" style="background: white; min-height: 755px">
+                                <div class="row scroll">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="breadcomb-wp">
                                             <div class="breadcomb-ctn">
-                                                <div class="element one">
+                                               {{-- <div class="element one">
                                                     <p>Hệ thống quản lý trắc nghiệm</p>
-                                                </div>
+                                                </div>--}}
                                                 @yield('directional')
                                             </div>
                                         </div>

@@ -17,7 +17,7 @@
 
 <div class="form-group">
     <label for="language_time">Thời gian làm bài:</label>
-    <input type="text" class="form-control" id="language_time" name="language_time">
+    <input type="number" class="form-control" id="language_time" name="language_time">
 </div>
 
 <div class="form-group">

@@ -22,9 +22,10 @@ class QuestionsController extends AppController
      */
     public function index(Request $request)
     {
-        $user = '';
-        if ($request->session()->has('username')) {
-            $user = Session::get('username');
+        parent::__construct();
+        $user = $this->username;
+        if($user == '') {
+            return redirect('admin/login');
         }
 
         if ($request->session()->has('lang_session')){
@@ -32,6 +33,7 @@ class QuestionsController extends AppController
         }else {
             $lang_id_session = '';
         }
+
         $data_language = DB::table('language')
             ->where('language.del_flag',0)
             ->get();
@@ -61,10 +63,10 @@ class QuestionsController extends AppController
         if ($request->session()->has('username')) {
             $user = Session::get('username');
         }
+
         $data_language = DB::table('language')
             ->where('del_flag',0)
             ->get();
-
 
         return view("backend.question.add")->with([
             'user' => $user,

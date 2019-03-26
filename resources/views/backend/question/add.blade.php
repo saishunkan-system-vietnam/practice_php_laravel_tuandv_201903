@@ -41,7 +41,7 @@
 </div>
 
 <div class="form-group">
-    <input type="submit" id="Lưu" class="btn btn-primary" value="Lưu"/>
+    <input type="submit" id="" class="btn btn-primary" value="Lưu"/>
 </div>
 <br/> {{--để tạm, sẽ sửa sau--}}
 <br/>

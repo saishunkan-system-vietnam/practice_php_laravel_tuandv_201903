@@ -25,6 +25,9 @@ class AssignsController extends AppController
     {
         parent::__construct();
         $user = $this->username;
+        if($user == '') {
+            return redirect('admin/login');
+        }
 
         $data = DB::table('assign')
             ->select(

@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/answer/process_update', 'Backend\AnswersController@process_update');
 
     Route::resource('assign_action', 'Backend\AssignsController');
-    Route::post('/assign/del_row', 'Backend\AssignsController@del_row');
+    Route::post('/assign/del', 'Backend\AssignsController@del_row');
     Route::get('/assign/send_email/{assign_id}/{member_id}/{language_id}', 'Backend\AssignsController@send_email');
 
 });
@@ -48,5 +48,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('/exercise/{token}','Frontend\HomesController@exercise');
     Route::get('test', 'Frontend\HomesController@test');
 });
+
 
 

@@ -24,10 +24,12 @@ class AnswersController extends AppController
      */
     public function index(Request $request)
     {
-        $user = '';
-        if ($request->session()->has('username')) {
-            $user = Session::get('username');
+        parent::__construct();
+        $user = $this->username;
+        if($user == '') {
+            return redirect('admin/login');
         }
+
         return view("backend.answer")->with([
             'user' => $user,
         ]);
@@ -60,20 +62,6 @@ class AnswersController extends AppController
         ]);
     }
 
-    /*public function refer_question(Request $request) {
-        if($request->ajax()){
-            $question_id = $request->question_key;
-            $data = DB::table('answer')
-                ->where('answer.question_id', $question_id)
-                ->where('answer.del_flag',0)
-                ->get();
-            return response()->json([
-                'refer_data' => isset($data)?$data:''
-            ]);
-
-        }
-    }*/
-
     /**
      * Store a newly created resource in storage.
      *
@@ -82,21 +70,6 @@ class AnswersController extends AppController
      */
     public function store(Request $request)
     {
-        /*$messages = [
-            'required' => 'Trường :attribute bắt buộc nhập.',
-        ];
-        $validator = Validator::make($request->all(), [
-            'question_id' => 'required|max:255',
-        ], $messages);
-
-        if ($validator->fails()) {
-            return redirect('admin/answer/create')
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-
-        }*/
-
         $args = $request->input('ans');
         //dd($args);
         $qID = $request->input('question_id');

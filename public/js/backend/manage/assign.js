@@ -68,11 +68,10 @@ $(document).ready(function() {
         });
 
         $(document).on('click','.delRow', function(e) {
+            e.preventDefault();
             var assign_id = $(this).attr("assign_id");
-            var count = $(".exam").length;
             var pos = $(this);
             //only delete when exist 1 row .exam:enable and 1 row .exam:disable (use to clone)
-            if(count > 2 ) {
                 $.MessageBox({
                     buttonDone  : "Yes",
                     buttonFail  : "No",
@@ -81,13 +80,11 @@ $(document).ready(function() {
                     if(assign_id != "") {
                         delRow(assign_id,pos);
                     }else {
-                        pos.parents(".exam").remove();
+                        pos.parents("tr").remove();
                     }
                 }).fail(function(){
                     //$.MessageBox("Error !");
                 });
-
-            }
         });
 
         var language_init = $("#language_id").val();
@@ -164,7 +161,7 @@ function delRow(id,pos) {
         }
     });
     $.ajax({
-        url: '/admin/assign/del_row',
+        url: '/admin/assign/del',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -176,7 +173,7 @@ function delRow(id,pos) {
             //input    : true,
             message  : "Delete success"
         }).done(function(){
-            pos.parents(".exam").remove();
+            pos.parents("tr").remove();
         });
     });
 }

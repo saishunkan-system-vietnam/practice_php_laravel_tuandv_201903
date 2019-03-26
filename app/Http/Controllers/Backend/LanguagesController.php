@@ -24,9 +24,10 @@ class LanguagesController extends AppController
      */
     public function index(Request $request){
         // return view("language.index");
-        $user = '';
-        if ($request->session()->has('username')) {
-            $user = Session::get('username');
+        parent::__construct();
+        $user = $this->username;
+        if($user == '') {
+            return redirect('admin/login');
         }
 
         $cb_language = $data = DB::table('Language')

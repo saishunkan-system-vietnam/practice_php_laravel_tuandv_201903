@@ -93,8 +93,8 @@
                                 @endforeach
                             @endif
                         </div>
-                        <button class="btn btn-primary" id="btnSubmit"> Nộp bài </button>
-                        <button class="btn btn-primary"  id="ReturnEmail" style="display: none">Send email</button>
+                        <button class="btn btn-primary" id="btnSubmit">Nộp bài</button>
+                        <button class="btn btn-primary" id="ReturnEmail" style="display: none">Send email</button>
                     </div>
                 </div>
             </div>

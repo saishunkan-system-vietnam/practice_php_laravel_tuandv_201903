@@ -116,3 +116,7 @@ form .form-control {
         transform: rotateX(50deg);
     }
 }
+.scroll {
+    overflow: scroll;
+    height: 710px;
+}
