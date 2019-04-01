@@ -32,6 +32,11 @@ $(document).ready(function() {
 
         $(document).on('click','#btnUpdate', function(e) {
             var data = getData(_obj);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="csrf-token"]').attr("content")
+                }
+            });
             $.ajax({
                 url: '/admin/language/process_update',
                 type: 'GET',
@@ -42,11 +47,31 @@ $(document).ready(function() {
             });
         });
 
+        $(document).on('keypress','#language_time', function(event) {
+
+            $(this).attr("style","background:none");
+            var code = event.keyCode || event.which;
+            if(jQuery.inArray(code,[10,11,12,13,14,15,16,17,18,49,50,51,52,53,54,55,56,57,96]) == -1) {
+                $(this).attr("style","background:#e67272 !important");
+                $(".tooltip_error").removeClass('none');
+                $(".tooltip_error").addClass('block');
+            } else {
+                $(".tooltip_error").addClass('none');
+                $(".tooltip_error").removeClass('block');
+            }
+
+        });
+
         $('.language_id').click(function() {
             var id = $(this).attr("language_id");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="csrf-token"]').attr("content")
+                }
+            });
             $.ajax({
                 url: '/admin/language/update',
-                type: 'GET',
+                type: 'get',
                 dataType: 'json',
                 data: {
                     language_id: id

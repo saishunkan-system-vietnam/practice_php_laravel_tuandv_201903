@@ -63,12 +63,10 @@ class LoginController extends Controller
         }
     }
 
-
-
     public function logout(Request $request){
         if ($request->session()->has('username')) {
             $request->session()->forget('username');
-            return redirect('admin/login');
         }
+        return redirect('admin/login');
     }
 }

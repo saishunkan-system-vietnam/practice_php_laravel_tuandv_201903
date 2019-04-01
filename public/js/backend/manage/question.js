@@ -17,6 +17,10 @@ var _obj = {
 
 $(document).ready(function() {
     try {
+        var lang_id = $("#lang_id").val();
+        if(lang_id !='') {
+            refer_language(lang_id);
+        }
         initialize();
         $(document).on('click','#show', function(e) {
             e.preventDefault();

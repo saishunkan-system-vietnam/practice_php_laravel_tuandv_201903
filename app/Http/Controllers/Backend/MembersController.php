@@ -25,9 +25,15 @@ class MembersController extends AppController
     {
         parent::__construct();
         $user = $this->username;
-        if($user == '') {
+        $model = DB::table('member')->where("username",$user)->first();
+        $role = $model->role;
+        if( $user == '' ) {
             return redirect('admin/login');
         }
+        if( $role != 1 ) {
+            return redirect('admin/logout');
+        }
+
         $data = DB::table('Member')
             ->where('Member.del_flag',0)
             ->orderBy('Member.member_id', 'desc')

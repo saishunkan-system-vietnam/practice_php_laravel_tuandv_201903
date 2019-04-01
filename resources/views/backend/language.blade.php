@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @stop
 @section('directional')
+    <input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
     <div class="row">
         <h2>Quản lý ngôn ngữ</h2>
         @if (count($errors) > 0)
@@ -53,14 +54,25 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         @if(isset($data))
                             @foreach($data as $row)
                                 <tr>
                                     <td class="text-center">{{ $row->language_id }}</td>
-                                    <td>{{ $row->language_nm }}</td>
-                                    <td>{{ $row->language_time }}</td>
+                                    <td style="font-weight: bold">{{ $row->language_nm }}</td>
+                                    <td>{{ $row->language_time }} {{ ($row->language_time !=0)?'giây':'' }}</td>
                                     <td><a class="language_id" href="#" language_id="{{$row->language_id}}">Sửa</a> | <a href="{{ 'language/del/'.$row->language_id }}">Xóa</a></td>
                                 </tr>
+                                @foreach($language_children as $rew)
+                                    @if($row->language_id == $rew->language_parent)
+                                        <tr>
+                                            <td class="text-center">{{ $rew->language_id }}</td>
+                                            <td>{{ "-- ".$rew->language_nm." (".$row->language_nm.")" }}</td>
+                                            <td>{{ $rew->language_time }} {{ ($row->language_time !=0)?'giây':'' }}</td>
+                                            <td><a class="language_id" href="#" language_id="{{$rew->language_id}}">Sửa</a> | <a href="{{ 'language/del/'.$rew->language_id }}">Xóa</a></td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                             @endforeach
                         @else
                             <tr>

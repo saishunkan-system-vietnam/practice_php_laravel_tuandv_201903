@@ -36,6 +36,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/answer/process_update', 'Backend\AnswersController@process_update');
 
     Route::resource('assign_action', 'Backend\AssignsController');
+
+    Route::group(['prefix' => '{admin}'], function($admin){
+        Route::resource('language', 'Backend\AssignsController');
+    });
+
     Route::post('/assign/del', 'Backend\AssignsController@del_row');
     Route::get('/assign/send_email/{assign_id}/{member_id}/{language_id}', 'Backend\AssignsController@send_email');
 

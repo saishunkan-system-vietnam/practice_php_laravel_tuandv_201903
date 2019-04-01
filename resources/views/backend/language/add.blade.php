@@ -4,7 +4,7 @@
     <label for="language_nm">Tên ngôn ngữ:</label>
     <input type="text" class="form-control" id="language_nm" name="language_nm">
 </div>
-
+<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 <div class="form-group">
     <label for="language_parent">Thuộc danh mục ngôn ngữ</label>
     <select name="language_parent" class="form-control" id="language_parent">
@@ -17,7 +17,10 @@
 
 <div class="form-group">
     <label for="language_time">Thời gian làm bài:</label>
-    <input type="number" class="form-control" id="language_time" name="language_time">
+    <div class="tooltip_error none">
+        <span class="tooltiptext" style="color: red">Yêu cầu nhập số (thời gian tính bằng giây) </span>
+    </div>
+    <input type="number" class="form-control errorTooltip" id="language_time" name="language_time">
 </div>
 
 <div class="form-group">

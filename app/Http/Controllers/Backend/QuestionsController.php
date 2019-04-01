@@ -24,10 +24,16 @@ class QuestionsController extends AppController
     {
         parent::__construct();
         $user = $this->username;
-        if($user == '') {
+        $model = DB::table('member')->where("username",$user)->first();
+        $role = $model->role;
+        if( $user == '' ) {
             return redirect('admin/login');
         }
+        if( $role != 1 ) {
+            return redirect('admin/logout');
+        }
 
+        //$a = Session::get('lang_session');
         if ($request->session()->has('lang_session')){
             $lang_id_session = Session::get('lang_session');
         }else {
@@ -35,6 +41,13 @@ class QuestionsController extends AppController
         }
 
         $data_language = DB::table('language')
+            ->where([
+                'language.language_parent' => 0,
+                'language.del_flag'        => 0
+            ])
+            ->get();
+
+        $language_children = DB::table('language')
             ->where('language.del_flag',0)
             ->get();
 
@@ -42,12 +55,14 @@ class QuestionsController extends AppController
             ->leftJoin('language', 'question.language_id', '=', 'language.language_id')
             ->where('question.del_flag',0)
             ->get();
-
+        //Session::forget('lang_session');
+        $data_sesison = $request->session()->all();
         return view("backend.question")->with([
-            'user'            => $user,
-            'data_language'   => $data_language,
-            'data'            => $data,
-            'lang_id_session' => $lang_id_session
+            'user'              => $user,
+            'data_language'     => $data_language,
+            'language_children' => $language_children,
+            'data'              => $data,
+            'lang_id_session'   => $lang_id_session
         ]);
     }
 
@@ -65,12 +80,22 @@ class QuestionsController extends AppController
         }
 
         $data_language = DB::table('language')
-            ->where('del_flag',0)
+            ->where([
+                'language.language_parent' => 0,
+                'language.del_flag'        => 0
+            ])
+            ->get();
+
+        $lang_id_session   = Session::get("lang_session");
+        $language_children = DB::table('language')
+            ->where('language.del_flag',0)
             ->get();
 
         return view("backend.question.add")->with([
-            'user' => $user,
-            'data_language' => $data_language
+            'user'              => $user,
+            'data_language'     => $data_language,
+            'language_children' => $language_children,
+            'lang_id_session'   => $lang_id_session
         ]);
     }
 
@@ -123,7 +148,7 @@ class QuestionsController extends AppController
             $data->language_id      = $request->language_id;
             $data->del_flag         = 0;
             $data->save();
-
+            //$a = Session::get('lang_session');
             if($data->save()){
                 $request->session()->flash('alert-success', 'Thêm mới thành công!');
                 return redirect('admin/question');

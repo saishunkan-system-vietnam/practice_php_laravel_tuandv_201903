@@ -6,7 +6,7 @@
         @endif
     @endforeach
 </div> <!-- end .flash-message -->
-
+<input type="hidden" name="csrf-token" content="{{ csrf_token() }}">
 {!! Form::open(['method' => 'POST', 'style'=>'width:1000px']) !!}
 
 <div class="form-group">
@@ -26,7 +26,10 @@
 
 <div class="form-group">
     <label for="language_time">Thời gian làm bài:</label>
-    <input type="text" class="form-control" id="language_time" name="language_time" value="{{ $data->language_time }}">
+    <div class="tooltip_error none">
+        <span class="tooltiptext" style="color: red">Yêu cầu nhập số (thời gian tính bằng giây) </span>
+    </div>
+    <input type="number" class="form-control language_time" id="language_time" name="language_time" value="{{ $data->language_time }}">
 </div>
 
 <div class="form-group">

@@ -85,9 +85,9 @@
                                        <td>{{$row->interview_end}}</td>
                                        <td>{{$row->experience_year}}</td>
                                        <td>{{$row->role}}</td>
-                                       <td style="min-width: 55px"><a class="member_id" member_id="{{$row->member_id}}" href="{{ 'member/edit/'.$row->member_id }}">Edit</a> | <a href="{{ 'member/del/'.$row->member_id }}">Del</a></td>
+                                       <td style="min-width: 55px"><a class="member_id" member_id="{{$row->member_id}}" href="{{ 'member/edit/'.$row->member_id }}">Sửa</a> | <a href="{{ 'member/del/'.$row->member_id }}">Xóa</a></td>
                                        <td>
-                                           <a class="btn btn-success" href="{{ URL::route('assign_action.create', ['member_id' => $row->member_id]) }}">Assign</a>
+                                           <a class="btn btn-success" href="{{ URL::route('assign_action.create', ['member_id' => $row->member_id]) }}">Gán</a>
                                        </td>
                                    </tr>
                                @endforeach

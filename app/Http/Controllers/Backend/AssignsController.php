@@ -25,8 +25,13 @@ class AssignsController extends AppController
     {
         parent::__construct();
         $user = $this->username;
-        if($user == '') {
+        $model = DB::table('member')->where("username",$user)->first();
+        $role = $model->role;
+        if( $user == '' ) {
             return redirect('admin/login');
+        }
+        if( $role != 1 ) {
+            return redirect('admin/logout');
         }
 
         $data = DB::table('assign')
@@ -214,7 +219,6 @@ class AssignsController extends AppController
             ->leftJoin('answer', 'result.answer_id', '=', 'answer.answer_id')
             ->leftJoin('member', 'result.member_id', '=', 'member.member_id')
             ->where([
-
                 'result.member_id' => $member_id,
                 'result.language_id' => $language_id,
                 'result.del_flag'  => 0

@@ -26,8 +26,13 @@ class AnswersController extends AppController
     {
         parent::__construct();
         $user = $this->username;
-        if($user == '') {
+        $model = DB::table('member')->where("username",$user)->first();
+        $role = $model->role;
+        if( $user == '' ) {
             return redirect('admin/login');
+        }
+        if( $role != 1 ) {
+            return redirect('admin/logout');
         }
 
         return view("backend.answer")->with([

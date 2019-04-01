@@ -36,3 +36,13 @@ b {
 .flash-message {
     margin-bottom: 15px !important;
 }
+
+@media screen and (max-width: 786px) {
+    .mobile-menu {
+        display: none;
+    }
+}
+.delRow:hover {
+    cursor: pointer;
+}
+

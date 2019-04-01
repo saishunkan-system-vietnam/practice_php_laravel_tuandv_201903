@@ -80,13 +80,6 @@
 @stop
 
 @section('content')
-<?php
-    if(isset($cookie)) {
-        echo $cookie;
-    }else {
-        echo "Hết phiên làm việc";
-    }
-?>
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -167,7 +160,7 @@
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                <li class="nav-item dropdown">
+                                                {{--<li class="nav-item dropdown">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                         <i class="far fa-envelope"></i>
                                                         <span class="indicator-ms"></span>
@@ -231,8 +224,8 @@
                                                             <a href="#">View All Messages</a>
                                                         </div>
                                                     </div>
-                                                </li>
-                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle" ><i class="far fa-bell"></i><span class="indicator-nt"></span></a>
+                                                </li>--}}
+                                                {{--<li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle" ><i class="far fa-bell"></i><span class="indicator-nt"></span></a>
                                                     <div role="menu" class="notification-author dropdown-menu animated zoomIn">
                                                         <div class="notification-single-top">
                                                             <h1>Notifications</h1>
@@ -291,7 +284,7 @@
                                                             <a href="#">View All Notification</a>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li>--}}
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle" style="padding-right: 20px">
                                                         <i class="fas fa-user"></i>
@@ -300,20 +293,14 @@
                                                     </a>
 
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="register.html"><span class="icon nalika-home author-log-ic"></span> Register</a>
-                                                        </li>
-                                                        <li><a href="#"><span class="icon nalika-user author-log-ic"></span> My Profile</a>
-                                                        </li>
-                                                        <li><a href="lock.html"><span class="icon nalika-diamond author-log-ic"></span> Lock</a>
-                                                        </li>
-                                                        <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
-                                                        </li>
-                                                        <li><a href="{{ url('admin/logout') }}"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
-                                                        </li>
+                                                        {{--<li><a href="register.html"><span class="icon nalika-home author-log-ic"></span> Register</a></li>
+                                                        <li><a href="#"><span class="icon nalika-user author-log-ic"></span> My Profile</a></li>
+                                                        <li><a href="lock.html"><span class="icon nalika-diamond author-log-ic"></span> Lock</a></li>
+                                                        <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a></li>--}}
+                                                        <li><a href="{{ url('admin/logout') }}"><span class="icon nalika-unlocked author-log-ic"></span>Log Out</a></li>
                                                     </ul>
                                                 </li>
-                                                <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle" style="padding: 0px !important;"><i class="icon nalika-menu-task"></i></a>
-
+                                               {{-- <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle" style="padding: 0px !important;"><i class="icon nalika-menu-task"></i></a>
                                                     <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
                                                         <ul class="nav nav-tabs custon-set-tab">
                                                             <li class="active"><a data-toggle="tab" href="#Notes">News</a>
@@ -692,7 +679,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li>--}}
                                             </ul>
                                         </div>
                                     </div>
@@ -876,7 +863,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer-copy-right">
-                            <p>Copyright © 2018 <a href="https://colorlib.com/wp/templates/">Colorlib</a> All rights reserved.</p>
+                            <p>Copyright © 2019 <a href="http://vn.saishunkansys.com/">Saishunkan</a> All rights reserved.</p>
                         </div>
                     </div>
                 </div>

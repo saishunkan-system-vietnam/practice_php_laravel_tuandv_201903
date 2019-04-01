@@ -26,8 +26,14 @@ class LanguagesController extends AppController
         // return view("language.index");
         parent::__construct();
         $user = $this->username;
-        if($user == '') {
+
+        $model = DB::table('member')->where("username",$user)->first();
+        $role = $model->role;
+        if( $user == '' ) {
             return redirect('admin/login');
+        }
+        if( $role != 1 ) {
+            return redirect('admin/logout');
         }
 
         $cb_language = $data = DB::table('Language')
@@ -35,13 +41,21 @@ class LanguagesController extends AppController
             ->get();
 
         $data = DB::table('Language')
-            ->where('Language.del_flag',0)
-            ->orderBy('Language.language_id', 'desc')
+            ->where([
+                'language.language_parent'  => 0,
+                'language.del_flag'         => 0
+            ])
             ->get();
+
+        $language_children = DB::table('language')
+            ->where('language.del_flag',0)
+            ->get();
+
         return view("backend.language")->with([
-            'user'        => $user,
-            'cb_language' => $cb_language,
-            'data'        => $data
+            'user'              => $user,
+            'cb_language'       => $cb_language,
+            'data'              => $data,
+            'language_children' => $language_children
         ]);
     }
 
@@ -123,7 +137,7 @@ class LanguagesController extends AppController
         $language_id = $request->language_id;
         $data = Language::where('language_id', $language_id)->first();
         $cb_language = DB::table('Language')
-            ->where('Language.language_id','!=',$language_id)
+            ->where('Language.language_parent',$language_id)
             ->where('Language.del_flag',0)
             ->get();
         $view = view('backend.language.update')

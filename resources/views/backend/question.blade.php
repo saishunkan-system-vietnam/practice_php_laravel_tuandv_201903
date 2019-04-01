@@ -40,12 +40,17 @@
             </div>
             <div id="question_show">
                 <div class="col-md-12 divAdd">
-                    <a id="add_new" class="btn btn-primary col-md-1" href="{{ asset("admin/question/create") }}" style="">Thêm mới</a>
+                    <a id="add_new" class="btn btn-primary col-md-1" href="{{ asset("admin/question/create") }}">Thêm mới</a>
                     <select class="form-control col-md-3" id="lang_id">
                          @if(isset($data_language[0]) && $data_language[0]->language_id !='')
                             <option value="">Lựa chọn ngôn ngữ</option>
                              @foreach($data_language as $rows)
-                                 <option value="{{ $rows->language_id }}" {{ (isset($lang_id_session) && $lang_id_session == $rows->language_id)?'selected':''  }}>{{ $rows->language_nm }}</option>
+                                <option value="{{ $rows->language_id }}" {{ (isset($lang_id_session) && $lang_id_session == $rows->language_id)?'selected':''  }} style="font-weight: bold">{{ $rows->language_nm }}</option>
+                            @foreach($language_children as $rews)
+                                  @if($rows->language_id == $rews->language_parent)
+                                        <option value="{{ $rews->language_id }}" {{ (isset($lang_id_session) && $lang_id_session == $rews->language_id)?'selected':''  }} style="padding-left: 35px">{{ "- ". $rews->language_nm }}</option>
+                                  @endif
+                                @endforeach
                              @endforeach
                          @endif
                     </select>

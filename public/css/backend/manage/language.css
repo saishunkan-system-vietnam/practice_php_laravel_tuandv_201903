@@ -4,3 +4,6 @@
 #add_new {
     margin-top: 20px;
 }
+.errorTooltip {
+    background: #c77373 !important;
+}

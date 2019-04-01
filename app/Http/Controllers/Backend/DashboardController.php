@@ -16,32 +16,14 @@ class DashboardController extends AppController
         if ($request->session()->has('username')) {
             $user = Session::get('username');
         }
-
-        /*$param = $request->param;
-        switch($param){
-            case 'language':
-                return view('backend.language')->with([
-                    'user'=>$user
-                ]);
-                break;
-            case 'question':
-                return view('backend.question')->with([
-                    'user'=>$user
-                ]);
-                break;
-            case 'answer':
-                return view('backend.answer')->with([
-                    'user'=>$user
-                ]);
-                break;
-            case 'member':
-                return view('backend.member')->with([
-                    'user'=>$user
-                ]);
-                break;
-            default:
-                break;
-        }*/
+        $model = DB::table('member')->where("username",$user)->first();
+        $role = $model->role;
+        if( $user == '' ) {
+            return redirect('admin/login');
+        }
+        if( $role != 1 ) {
+            return redirect('admin/logout');
+        }
         return view('backend.dashboard')->with('user',$user);
     }
 }
