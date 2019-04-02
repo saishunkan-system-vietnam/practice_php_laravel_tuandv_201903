@@ -49,9 +49,9 @@
  
 /* Tablet desktop :768px. */
 @media (min-width: 768px) and (max-width: 991px) {
-.left-sidebar-pro{
-	display:none;
-}
+/*.left-sidebar-pro {
+    display: none;
+}*/
 .all-content-wrapper {
     margin-left: 0px;
 }
@@ -105,9 +105,9 @@
 /* small mobile :320px. */
 @media (max-width: 767px) {
 .container {width:300px}
-.left-sidebar-pro{
+/*.left-sidebar-pro{
 	display:none;
-}
+}*/
 .all-content-wrapper {
     margin-left: 0px;
 }

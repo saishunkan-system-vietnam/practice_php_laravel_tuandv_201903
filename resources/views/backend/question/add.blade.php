@@ -31,7 +31,7 @@
 
 <div class="form-group">
     <label for="language_id">Language name:</label>
-    <select name="language_id" class="form-control" id="language_id">
+    <select name="language_id" class="form-control" id="language_id" disabled>
         @if(isset($data_language[0]) && $data_language[0]->language_id !='')
             <option value="">Lựa chọn ngôn ngữ</option>
             @foreach($data_language as $rows)

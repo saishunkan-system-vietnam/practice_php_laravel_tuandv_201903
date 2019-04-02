@@ -71,7 +71,6 @@
         </div>
     </div>
     <input type="hidden" name="member_id" value="{{ $model_member['member_id'] }}"/>
-    <br/> {{--để tạm, sẽ sửa sau--}}
     <div class="form-group">
         <input type="button" id="" class="btn btn-primary" value="Lưu" onclick="checkSubmit()"/>
     </div>

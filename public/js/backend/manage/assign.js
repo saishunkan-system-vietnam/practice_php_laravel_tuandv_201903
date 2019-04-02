@@ -80,7 +80,7 @@ $(document).ready(function() {
                     if(assign_id != "") {
                         delRow(assign_id,pos);
                     }else {
-                        pos.parents("tr").remove();
+                        pos.parents(".exam").remove();
                     }
                 }).fail(function(){
                     //$.MessageBox("Error !");

@@ -160,21 +160,37 @@ class MembersController extends AppController
     public function process_update(Request $request){
         $data = $request->all();
         $member_id              = $request->member_id;
-        $model                  = Member::find($member_id);
-        $model->username        = $request->username;
-        $model->password        = $request->password;
-        $model->email           = $request->email;
-        $model->birthday        = date('Y-m-d', strtotime($request->birthday));
-        $model->address1        = $request->address1;
-        $model->address2        = $request->address2;
-        $model->gender          = $request->gender;
-        $model->shool           = $request->shool;
-        $model->education_year  = $request->education_year;
-        $model->interview_start = date('Y-m-d', strtotime($request->interview_start));
-        $model->interview_end   = date('Y-m-d', strtotime($request->interview_end));
-        $model->experience_year = $request->experience_year;
-        $model->role            = $request->role;
-        $result = $model->save();
+        $username        = $request->username;
+        $password        = $request->password;
+        $email           = $request->email;
+        $birthday        = date('Y-m-d', strtotime($request->birthday));
+        $address1        = $request->address1;
+        $address2        = $request->address2;
+        $gender          = $request->gender;
+        $shool           = $request->shool;
+        $education_year  = $request->education_year;
+        $interview_start = date('Y-m-d', strtotime($request->interview_start));
+        $interview_end   = date('Y-m-d', strtotime($request->interview_end));
+        $experience_year = $request->experience_year;
+        $role            = $request->role;
+        $result = DB::table('member')
+            ->where("member_id",$member_id)
+            ->update([
+                "username"          => $username
+             ,   "password"          => $password
+             ,   "email"             => $email
+             ,   "birthday"          => $birthday
+             ,   "address1"          => $address1
+             ,   "address2"          => $address2
+             ,   "gender"            => $gender
+             ,   "shool"             => $shool
+             ,   "education_year"    => $education_year
+             ,   "interview_start"   => $interview_start
+             ,   "interview_end"     => $interview_end
+             ,   "experience_year"   => $experience_year
+             ,   "role"              => $role
+            ]);
+
         if($result){
             $request->session()->flash('alert-success', 'Sửa đổi thành công!');
         }else {

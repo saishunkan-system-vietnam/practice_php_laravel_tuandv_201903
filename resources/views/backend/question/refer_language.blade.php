@@ -18,9 +18,9 @@
                 <td>{{ $row->question_nm }}</td>
                 <td>{{ substr($row->question_code,0,50) }} {{ ($row->question_code != '')?'...':'' }}</td>
                 <td>{{ $row->language_nm }}</td>
-                <td><a class="question_id" href="{{ asset('admin/question/update/'.$row->question_id)  }}" question_id="{{$row->question_id}}">Edit</a> | <a href="{{ 'question/del/'.$row->question_id }}">Del</a></td>
+                <td><a class="question_id" href="{{ asset('admin/question/update/'.$row->question_id)  }}" question_id="{{$row->question_id}}">Sửa</a> | <a href="{{ 'question/del/'.$row->question_id }}">Xóa</a></td>
                 <td>
-                    <a class="btn btn-success add_answer" href="{{ asset('admin/answer/create/'.$row->question_id) }}">Add answer</a>
+                    <a class="btn btn-success add_answer" href="{{ asset('admin/answer/create/'.$row->question_id) }}">Gán</a>
                 </td>
             </tr>
         @endforeach

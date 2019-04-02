@@ -99,12 +99,12 @@ body {}
 }
 #sidebar {
     min-width: 205px;
-    background: #1b2a47;
+    background: #1b2a47 !important;
     color: #fff;
 	position:fixed;
     transition: all 0.3s;
 	z-index:999;
-	height:100%;
+
 }
 .mini-navbar .all-content-wrapper {
     margin-left: 80px;

@@ -46,7 +46,7 @@
                    {{--<a id="add_new" href="{{ asset("/admin/member/create") }}" class="btn btn-primary">Thêm mới</a>--}}
                </div>
                <div class="col-md-12 divShow">
-                   <table id="myTable" class="display" style="width:100%">
+                   <table id="myTable" class="display cell-border compact stripe" style="width:100%">
                        <thead>
                        <tr>
                            <th>Id</th>
@@ -85,8 +85,8 @@
                                        <td>{{$row->interview_end}}</td>
                                        <td>{{$row->experience_year}}</td>
                                        <td>{{$row->role}}</td>
-                                       <td style="min-width: 55px"><a class="member_id" member_id="{{$row->member_id}}" href="{{ 'member/edit/'.$row->member_id }}">Sửa</a> | <a href="{{ 'member/del/'.$row->member_id }}">Xóa</a></td>
-                                       <td>
+                                       <td style="min-width: 60px"><a class="text-center member_id" member_id="{{$row->member_id}}" href="{{ 'member/edit/'.$row->member_id }}">Sửa</a> | <a href="{{ 'member/del/'.$row->member_id }}">Xóa</a></td>
+                                       <td class="text-center">
                                            <a class="btn btn-success" href="{{ URL::route('assign_action.create', ['member_id' => $row->member_id]) }}">Gán</a>
                                        </td>
                                    </tr>

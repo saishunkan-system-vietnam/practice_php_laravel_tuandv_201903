@@ -33,11 +33,15 @@ class QuestionsController extends AppController
             return redirect('admin/logout');
         }
 
-        //$a = Session::get('lang_session');
-        if ($request->session()->has('lang_session')){
-            $lang_id_session = Session::get('lang_session');
+
+        if ($request->session()->has('lang_session2')){
+            $lang_id_session = Session::get('lang_session2');
         }else {
-            $lang_id_session = '';
+            if ($request->session()->has('lang_session')){
+                $lang_id_session = Session::get('lang_session');
+            }else {
+                $lang_id_session = '';
+            }
         }
 
         $data_language = DB::table('language')
@@ -66,7 +70,6 @@ class QuestionsController extends AppController
         ]);
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -87,6 +90,7 @@ class QuestionsController extends AppController
             ->get();
 
         $lang_id_session   = Session::get("lang_session");
+        Session::put('lang_session2',$lang_id_session);
         $language_children = DB::table('language')
             ->where('language.del_flag',0)
             ->get();

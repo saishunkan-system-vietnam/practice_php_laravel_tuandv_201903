@@ -38,7 +38,7 @@
             <div id="assign_show">
                 <h5>Hiển thị danh sách</h5>
                 <div class="col-md-12 divShow">
-                    <table id="myTable" class="display" style="width:100%">
+                    <table id="myTable" class="display cell-border compact stripe" style="width:100%">
                         <thead>
                         <tr>
                             <th>Mã đề thi</th>
@@ -58,7 +58,7 @@
                                     <td>{{ $row->username }}</td>
                                     <td class="text-center">{{ $row->language_id }}</td>
                                     <td>{{ $row->language_nm }}</td>
-                                    <td><a class="assign_id" href="{{ url('admin/'.$row->member_id.'/language/'.$row->language_id) }}">Hiển thị</a> | <a class="delRow" assign_id="{{ $row->assign_id }}">Xóa</a></td>
+                                    <td class="text-center"><a class="assign_id" href="{{ url('admin/'.$row->member_id.'/language/'.$row->language_id) }}">Hiển thị</a> | <a class="delRow" assign_id="{{ $row->assign_id }}">Xóa</a></td>
                                 </tr>
                             @endforeach
                         @else

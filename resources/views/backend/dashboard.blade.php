@@ -83,7 +83,7 @@
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="left-sidebar-pro">
+    <div class=" left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
                 {{Html::image('../imgs/backend/logo.jpg','sanshunkan', array('width' => '90px' , 'height' => '90px')) }}
@@ -103,7 +103,31 @@
             @if(isset($role) && $role == 2)
                 {{--{{ '1' }}--}}
             @else
-                <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                <nav class="navbar navbar-inverse">
+                    <div class="bornavbar">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse " id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li><a title="Quản lý ngôn ngữ" href="{{ asset('admin/language') }}"><i class="fas fa-tags"></i><span class="mini-sub-pro">Quản lý ngôn ngữ</span></a></li>
+                                <li><a title="Quản lý câu hỏi" href="{{ asset('admin/question') }}"><i class="fas fa-list-ul"></i><span class="mini-sub-pro">Quản lý câu hỏi</span></a></li>
+                                <li><a title="Quản lý ứng viên" href="{{ asset('admin/member') }}"><i class="fas fa-user"></i><span class="mini-sub-pro">Quản lý ứng viên</span></a></li>
+                                <li><a title="Quản lý đề thi" href="{{ URL::route('assign_action.index')}}"><i class="fas fa-book"></i><span class="mini-sub-pro">Quản lý đề thi</span></a></li>
+                            </ul>
+                          {{--  <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            </ul>--}}
+                        </div>
+                    </div>
+                </nav>
+
+                {{--<div class="left-custom-menu-adp-wrap comment-scrollbar">
                     <nav class="sidebar-nav left-sidebar-menu-pro">
                         <ul class="metismenu" id="menu1">
                             <li class="active">
@@ -114,15 +138,14 @@
                                     <li><a title="Quản lý đề thi" href="{{ URL::route('assign_action.index')}}"><span class="mini-sub-pro">Quản lý đề thi</span></a></li>
                                 </ul>
                             </li>
-
                         </ul>
                     </nav>
-                </div>
+                </div>--}}
             @endif
         </nav>
     </div>
     <!-- Start Welcome area -->
-    <div class="all-content-wrapper">
+    <div class=" all-content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

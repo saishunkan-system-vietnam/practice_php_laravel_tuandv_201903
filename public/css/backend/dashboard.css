@@ -120,3 +120,80 @@ form .form-control {
     overflow: scroll;
     height: 710px;
 }
+#myNavbar ul {
+    margin: 0px;
+    padding: 0px;
+}
+#myNavbar ul li {
+    clear: both;
+}
+#myNavbar ul li:hover{
+    background: silver !important;
+}
+
+#myNavbar ul li:hover a {
+    opacity: 1;
+}
+
+.navbar-collapse {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    background: #1b2a47;
+    border: none;
+}
+
+.navbar-nav i {
+    margin-right: 10px;
+}
+#myNavbar ul a {
+    width: 203px;
+    border-top: 1px solid grey;
+    opacity: 0.5;
+    color: white;
+}
+
+.navbar-inverse {
+    border-color:#1b2a47 !important;
+    margin-top: 15px;
+}
+@media (max-width: 767px){
+    #sidebar {
+        position: absolute !important;
+        min-width: 380px !important;
+        /*min-height: 100px;*/
+
+    }
+    #myNavbar ul a {
+        width: 380px;
+    }
+    #lang_id {
+        margin-top: 15px;
+        margin-left: 0px;
+    }
+    .mgTop {
+        margin-top: 0px;
+    }
+    .navbar-inverse {
+        background-color: #1b2a47 !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px){
+    #sidebar {
+        position: absolute !important;
+        /*min-width: 786px !important;*/
+        width: 766px !important;
+        height: 200px !important;
+    }
+    #myNavbar ul a {
+        width: 768px;
+    }
+
+   .breadcome-area {
+       margin-top: 100px;
+   }
+   #lang_id {
+       margin-top: 15px;
+       margin-left: 0px;
+   }
+}

@@ -40,7 +40,7 @@
                     <a id="add_new" class="btn btn-primary" href="{{ asset("admin/answer/create") }}">Thêm mới</a>
                 </div>
                 <div class="col-md-12 divShow">
-                    <table id="myTable" class="display" style="width:100%">
+                    <table id="myTable" class="display cell-border compact stripe" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Mã câu trả lời</th>

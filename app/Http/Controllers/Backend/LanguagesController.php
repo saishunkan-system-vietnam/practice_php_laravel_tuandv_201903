@@ -167,9 +167,10 @@ class LanguagesController extends AppController
         $result = DB::table('language')
             ->where("language_id",$id)
             ->update([
-                    "language_nm" => $request->language_nm,
+                    "language_nm2" => $request->language_nm,
                     "language_time" => $request->language_time
                 ]);
+
         if($result){
             $request->session()->flash('alert-success', 'Sửa đổi thành công!');
         }else {

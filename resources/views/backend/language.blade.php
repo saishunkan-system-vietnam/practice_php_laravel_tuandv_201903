@@ -44,7 +44,7 @@
                     <button id="add_new" class="btn btn-primary">Thêm mới</button>
                 </div>
                 <div class="col-md-12 divShow">
-                    <table id="myTable" class="display" style="width:100%">
+                    <table id="myTable" class="display cell-border compact stripe" style="width:100%">
                         <thead>
                         <tr>
                             <th>Mã ngôn ngữ</th>
@@ -61,7 +61,7 @@
                                     <td class="text-center">{{ $row->language_id }}</td>
                                     <td style="font-weight: bold">{{ $row->language_nm }}</td>
                                     <td>{{ $row->language_time }} {{ ($row->language_time !=0)?'giây':'' }}</td>
-                                    <td><a class="language_id" href="#" language_id="{{$row->language_id}}">Sửa</a> | <a href="{{ 'language/del/'.$row->language_id }}">Xóa</a></td>
+                                    <td class="text-center"><a class="language_id" href="#" language_id="{{$row->language_id}}">Sửa</a> | <a href="{{ 'language/del/'.$row->language_id }}">Xóa</a></td>
                                 </tr>
                                 @foreach($language_children as $rew)
                                     @if($row->language_id == $rew->language_parent)
@@ -69,7 +69,7 @@
                                             <td class="text-center">{{ $rew->language_id }}</td>
                                             <td>{{ "-- ".$rew->language_nm." (".$row->language_nm.")" }}</td>
                                             <td>{{ $rew->language_time }} {{ ($row->language_time !=0)?'giây':'' }}</td>
-                                            <td><a class="language_id" href="#" language_id="{{$rew->language_id}}">Sửa</a> | <a href="{{ 'language/del/'.$rew->language_id }}">Xóa</a></td>
+                                            <td class="text-center"><a class="language_id" href="#" language_id="{{$rew->language_id}}">Sửa</a> | <a href="{{ 'language/del/'.$rew->language_id }}">Xóa</a></td>
                                         </tr>
                                     @endif
                                 @endforeach
